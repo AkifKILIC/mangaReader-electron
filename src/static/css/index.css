@@ -3,6 +3,9 @@ body {
   margin: auto;
   color: white;
 }
+.sol {
+  width: 250px;
+}
 #window-controls {
   display: grid;
   grid-template-columns: repeat(3, 38px);

@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
     <title>Hello, world!</title>
+    
   </head>
   <body>
     <div class="container-fluid bg-dark vh-100 ">
       <div class="row" style="height: 145px;">
-        <div class="col-xs bg-success" style="width: 250px;">
+        <div class="col-xs bg-success sol">
         </div>
         <div class="col">
           <div class="row row-cols-1">
@@ -46,9 +48,9 @@
                   
                 </div>
                 <div class="col-xs" style="width: 175px;">
-                  <div class="input-group-sm-fluid" style="height: 32px;">
-                    <input type="text" class="form-control" placeholder="Some text">
-                    <button class="btn btn-outline-secondary" type="button">Search</button>
+                  <div class="input-group-sm d-flex" style="height: 32px;">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-search"></span></button>
                   </div>
                 </div>
               </div>
@@ -57,7 +59,21 @@
         </div>
       </div>
       <div class="row" style="height: calc(100% - 145px);">
-        <div class="col-xs" style="width: 250px;">
+        <div class="col-xs sol">
+          <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+              <div class="bg-dark p-4">
+                <h5 class="text-white h4">Collapsed content</h5>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+              </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </nav>
+          </div>
+
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               One of four columns
@@ -70,9 +86,32 @@
           </div>
         </div>
         <div class="col bg-success">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar w/ text</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+              </ul>
+              <span class="navbar-text">
+                Navbar text with an inline element
+              </span>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
+    <script src="C:\Users\shini\source\repos\Demo\mangaReader-v2\mangaReader-v2\node_modules\jquery\dist\jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="static/js/renderer.js"></script>
   </body>
