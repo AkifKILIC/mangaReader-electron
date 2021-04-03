@@ -77,3 +77,9 @@ body {
 .bg5{
   background-color: #222226;
 }
+#leftBarButton i{
+ color :#5C5C66;
+}
+#leftBarButton:hover i{
+  color : #222226;
+}

@@ -17,7 +17,6 @@ window.onbeforeunload = (event) => {
     Electron win listeners as the win is not dereferenced unless closed) */
     win.removeAllListeners();
 }
-
 function handleWindowControls() {
     // Make minimise/maximise/restore/close buttons work when they are clicked
     document.getElementById('min-button').addEventListener("click", event => {
@@ -48,4 +47,15 @@ function handleWindowControls() {
             document.body.classList.remove('maximized');
         }
     }
+}
+state = true;
+function leftBarState() {
+    if(state){
+        document.getElementById('sol1').style.width = '95px';
+        document.getElementById('sol2').style.width = '95px';
+    }else{
+        document.getElementById('sol1').style.width = '250px';
+        document.getElementById('sol2').style.width = '250px';
+    }
+    state = !state;
 }
