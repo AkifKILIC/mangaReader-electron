@@ -51,11 +51,30 @@ function handleWindowControls() {
 state = true;
 function leftBarState() {
     if(state){
-        document.getElementById('sol1').style.width = '95px';
-        document.getElementById('sol2').style.width = '95px';
+        sizingEffect(95,250);
     }else{
-        document.getElementById('sol1').style.width = '250px';
-        document.getElementById('sol2').style.width = '250px';
+        sizingEffect(250,95);
     }
     state = !state;
 }
+async function sizingEffect(size,toSize){
+    if (size < toSize){
+        for (i= size ; i < toSize ; i++){
+            pixel = i + 'px';
+            document.getElementById('sol1').style.width = pixel;
+            document.getElementById('sol2').style.width = pixel;
+            await sleep(1);
+        }
+    }
+    if (size > toSize){
+        for (i= size ; i > toSize ; i--){
+            pixel = i + 'px';
+            document.getElementById('sol1').style.width = pixel;
+            document.getElementById('sol2').style.width = pixel;
+            await sleep(1);
+        }
+    }
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
