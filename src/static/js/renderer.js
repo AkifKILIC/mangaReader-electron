@@ -51,27 +51,46 @@ function handleWindowControls() {
 state = true;
 function leftBarState() {
     if(state){
-        sizingEffect(95,250);
+        sizingEffect('sol1',95,250,true);
+        sizingEffect('sol2',95,250,true);
     }else{
-        sizingEffect(250,95);
+        sizingEffect('sol1',250,95,true);
+        sizingEffect('sol2',250,95,true);
     }
     state = !state;
 }
-async function sizingEffect(size,toSize){
-    if (size < toSize){
-        for (i= size ; i < toSize ; i++){
-            pixel = i + 'px';
-            document.getElementById('sol1').style.width = pixel;
-            document.getElementById('sol2').style.width = pixel;
-            await sleep(1);
+async function sizingEffect(elementId,size,toSize,widthOrHeight){
+    if(widthOrHeight){
+        if (size < toSize){
+            for (i= size ; i <= toSize ; i++){
+                pixel = i + 'px';
+                document.getElementById(elementId).style.width = pixel;
+                await sleep(1);
+                console.log('elementId = '+ elementId + ' // i = ' + i);
+            }
         }
-    }
-    if (size > toSize){
-        for (i= size ; i > toSize ; i--){
-            pixel = i + 'px';
-            document.getElementById('sol1').style.width = pixel;
-            document.getElementById('sol2').style.width = pixel;
-            await sleep(1);
+        if (size > toSize){
+            for (i= size ; i >= toSize ; i--){
+                pixel = i + 'px';
+                document.getElementById(elementId).style.width = pixel;
+                await sleep(1); 
+                console.log('elementId = '+ elementId + ' // i = ' + i);
+            }
+        }
+    }else{
+        if (size < toSize){
+            for (i= size ; i < toSize ; i++){
+                pixel = i + 'px';
+                document.getElementById(elementId).style.height = pixel;
+                await sleep(1);
+            }
+        }
+        if (size > toSize){
+            for (i= size ; i > toSize ; i--){
+                pixel = i + 'px';
+                document.getElementById(elementId).style.height = pixel;
+                await sleep(1);
+            }
         }
     }
 }
