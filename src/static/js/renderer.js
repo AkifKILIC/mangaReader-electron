@@ -48,18 +48,63 @@ function handleWindowControls() {
         }
     }
 }
+const sol1 = document.getElementById('sol1');
+const sol2 = document.getElementById('sol2');
+const leftBarButton = document.getElementById('leftBarButton');
+const buttonIcon = document.getElementById('buttonicon');
 state = true;
 function leftBarState() {
     if(state){
+        if(sol1.classList.contains('solTwo')){
+            sol1.style.width = '95px';
+            sol2.style.width = '95px';
+            sol1.classList.remove('solTwo');
+            sol2.classList.remove('solTwo');
+        }
+        sol1.classList.add('sol');
+        sol2.classList.add('sol');
+    console.log('Didit');
+    state = !state;
+        if(leftBarButton.classList.contains('deActives')){
+            leftBarButton.classList.remove('deActives');
+            leftBarButton.classList.add('actives');
+
+        }else{
+            leftBarButton.classList.add('actives');
+        }
+        buttonIcon.classList.remove('fa-2x');
+        buttonIcon.classList.add('fa-1x');
+    }else{
+        sol1.style.width = '250px';
+        sol2.style.width = '250px';
+        if(sol1.classList.contains('sol')){
+            sol1.classList.remove('sol');
+            sol2.classList.remove('sol');
+        }
+        sol1.classList.add('solTwo');
+        sol2.classList.add('solTwo');
+    console.log('Diditreverse');
+    state = !state;    
+        if(leftBarButton.classList.contains('actives')){
+            leftBarButton.classList.remove('actives');
+            leftBarButton.classList.add('deActives');
+        }else{
+            leftBarButton.classList.add('deActives');
+        }
+        buttonIcon.classList.remove('fa-1x');
+        buttonIcon.classList.add('fa-2x');
+    }    
+        /*if(state){
         sizingEffect('sol1',95,250,true);
         sizingEffect('sol2',95,250,true);
     }else{
         sizingEffect('sol1',250,95,true);
         sizingEffect('sol2',250,95,true);
     }
-    state = !state;
+    state = !state;*/
 }
-async function sizingEffect(elementId,size,toSize,widthOrHeight){
+
+/*async function sizingEffect(elementId,size,toSize,widthOrHeight){
     if(widthOrHeight){
         if (size < toSize){
             for (i= size ; i <= toSize ; i++){
@@ -96,4 +141,4 @@ async function sizingEffect(elementId,size,toSize,widthOrHeight){
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}*/

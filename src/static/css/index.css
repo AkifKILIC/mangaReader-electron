@@ -4,8 +4,41 @@ body {
   color: white;
 }
 .sol {
-  width: 250px;
+  animation:collapse 2s forwards;
 }
+.solTwo{
+  animation:rCollapse 2s forwards;
+}
+.actives {
+  animation:move2r 2s forwards;
+}
+.deActives{
+ animation:move2l 2s forwards;
+}
+@keyframes move2r{
+ from{
+  margin-left: 0px;
+ } 
+ to{
+  margin-left: 225px;
+  margin-top: 3px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 3px;
+  padding-left: 3px;
+}
+}
+@keyframes move2l{
+  from{
+    margin-left: 220px;
+    margin-top: 3px;
+    padding: 0px;
+  } 
+  to{
+    margin-left: 3px;
+    padding: .375rem .75rem;
+ }
+ }
 #window-controls {
   display: grid;
   grid-template-columns: repeat(3, 38px);
@@ -80,7 +113,23 @@ body {
 #leftBarButton i{
  color :#5C5C66;
 }
+#leftBarButton:active i{
+  color : #222226;
+}
 #leftBarButton:hover i{
   color : #222226;
 }
-
+@keyframes collapse{
+  from{
+  }
+  to{
+    width: 250px;
+  }
+}
+@keyframes rCollapse{
+  from{
+  }
+  to{
+    width: 95px;
+  }
+}
