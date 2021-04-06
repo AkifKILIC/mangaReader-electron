@@ -15,9 +15,15 @@ body {
 .deActives{
  animation:move2l 2s forwards;
 }
+.fadein {
+  animation: appear 2s forwards;
+}
+.fadeout{
+  animation: vanish 2s forwards;
+}
 @keyframes move2r{
  from{
-  margin-left: 0px;
+  margin-left: 20px;
  } 
  to{
   margin-left: 225px;
@@ -35,9 +41,31 @@ body {
     padding: 0px;
   } 
   to{
-    margin-left: 3px;
+    margin-left: 20px;
     padding: .375rem .75rem;
  }
+ }
+ @keyframes vanish {
+   from{
+    opacity: 100%;
+   }
+   50%{
+    opacity: 0%;
+   }
+   to{
+    opacity: 0%;
+   }
+ }
+ @keyframes appear {
+   from{
+    opacity: 0%;
+   }
+   50%{
+    opacity: 0%;
+   }
+   to{
+    opacity: 100%;    
+   }
  }
 #window-controls {
   display: grid;

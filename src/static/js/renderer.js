@@ -52,6 +52,7 @@ const sol1 = document.getElementById('sol1');
 const sol2 = document.getElementById('sol2');
 const leftBarButton = document.getElementById('leftBarButton');
 const buttonIcon = document.getElementById('buttonicon');
+const verticalMenu = document.getElementById('verticalMenu');
 state = true;
 function leftBarState() {
     if(state){
@@ -72,19 +73,27 @@ function leftBarState() {
         }else{
             leftBarButton.classList.add('actives');
         }
+        if(verticalMenu.classList.contains('fadeout')){
+            verticalMenu.classList.remove('fadeout');
+            verticalMenu.classList.add('fadein');
+        }else{
+            verticalMenu.classList.add('fadein');
+        }
+
         buttonIcon.classList.remove('fa-2x');
         buttonIcon.classList.add('fa-1x');
     }else{
         sol1.style.width = '250px';
         sol2.style.width = '250px';
+       // verticalMenu.style.width = '250px';
         if(sol1.classList.contains('sol')){
             sol1.classList.remove('sol');
             sol2.classList.remove('sol');
         }
         sol1.classList.add('solTwo');
         sol2.classList.add('solTwo');
-    console.log('Diditreverse');
-    state = !state;    
+        console.log('Diditreverse');
+        state = !state;    
         if(leftBarButton.classList.contains('actives')){
             leftBarButton.classList.remove('actives');
             leftBarButton.classList.add('deActives');
@@ -93,6 +102,12 @@ function leftBarState() {
         }
         buttonIcon.classList.remove('fa-1x');
         buttonIcon.classList.add('fa-2x');
+        if(verticalMenu.classList.contains('fadein')){
+            verticalMenu.classList.remove('fadein');
+            verticalMenu.classList.add('fadeout');
+        }else{
+            verticalMenu.classList.add('fadeout');
+        }
     }    
         /*if(state){
         sizingEffect('sol1',95,250,true);
