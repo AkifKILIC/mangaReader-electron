@@ -91,7 +91,14 @@ function tabActiveToggle(b1){
     if(page4.classList.contains('active')){page4.classList.remove('active');}
     b1.classList.add('active');
 }
+function tabDisable(){
+    page1.classList.toggle('disabled');
+    page2.classList.toggle('disabled');
+    page3.classList.toggle('disabled');
+    page4.classList.toggle('disabled');
+}
 function leftBarState() {
+    tabDisable();
     if(state){
         if(sol1.classList.contains('solTwo')){
             sol1.style.width = '95px';
@@ -122,7 +129,6 @@ function leftBarState() {
     }else{
         sol1.style.width = '250px';
         sol2.style.width = '250px';
-       // verticalMenu.style.width = '250px';
         if(sol1.classList.contains('sol')){
             sol1.classList.remove('sol');
             sol2.classList.remove('sol');
@@ -145,7 +151,7 @@ function leftBarState() {
         }else{
             verticalMenu.classList.add('fadeout');
         }
-    }    
+    }
 }
 var inner;
 function readTextFile(file)

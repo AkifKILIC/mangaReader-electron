@@ -21,52 +21,6 @@ body {
 .fadeout{
   animation: vanish 2s forwards;
 }
-@keyframes move2r{
- from{
-  margin-left: 20px;
- } 
- to{
-  margin-left: 225px;
-  margin-top: 3px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-right: 3px;
-  padding-left: 3px;
-}
-}
-@keyframes move2l{
-  from{
-    margin-left: 220px;
-    margin-top: 3px;
-    padding: 0px;
-  } 
-  to{
-    margin-left: 20px;
-    padding: .375rem .75rem;
- }
- }
- @keyframes vanish {
-   from{
-    opacity: 100%;
-   }
-   50%{
-    opacity: 0%;
-   }
-   to{
-    opacity: 0%;
-   }
- }
- @keyframes appear {
-   from{
-    opacity: 0%;
-   }
-   50%{
-    opacity: 0%;
-   }
-   to{
-    opacity: 100%;    
-   }
- }
 #window-controls {
   display: grid;
   grid-template-columns: repeat(3, 38px);
@@ -160,4 +114,64 @@ body {
   to{
     width: 95px;
   }
+}
+
+@keyframes move2r{
+  from{
+   margin-left: 20px;
+  } 
+  to{
+   margin-left: 225px;
+   margin-top: 3px;
+   padding-top: 0px;
+   padding-bottom: 0px;
+   padding-right: 3px;
+   padding-left: 3px;
+ }
+ }
+ @keyframes move2l{
+   from{
+     margin-left: 220px;
+     margin-top: 3px;
+     padding: 0px;
+   } 
+   to{
+     margin-left: 20px;
+     padding: .375rem .75rem;
+    }
+  }
+  @keyframes vanish {
+    from{
+     opacity: 100%;
+    }
+    50%{
+     opacity: 0%;
+    }
+    to{
+     opacity: 0%;
+    }
+  }
+  @keyframes appear {
+    from{
+     opacity: 0%;
+    }
+    50%{
+     opacity: 0%;
+    }
+    to{
+     opacity: 100%;    
+    }
+  }
+#verticalMenu a {
+  background-color : transparent;
+  color: white;
+}
+#verticalMenu a:hover{
+  background-color: #3f3f46 ;
+  color: white ;
+}
+#verticalMenu a.active{
+  background-color: #3f3f46 ;
+  border-color: #222226;
+  color: white;
 }
