@@ -54,6 +54,43 @@ const leftBarButton = document.getElementById('leftBarButton');
 const buttonIcon = document.getElementById('buttonicon');
 const verticalMenu = document.getElementById('verticalMenu');
 state = true;
+const page1 = document.getElementById('p1');
+const page2 = document.getElementById('p2');
+const page3 = document.getElementById('p3');
+const page4 = document.getElementById('p4');
+function page(tab) { //*** For Tabs to Work for Content Change ***
+    if(tab == 'mangakakalot'){
+        readTextFile("mangakakalot.html");
+        document.getElementById("content").innerHTML = inner;
+        console.log('Page = Mangakakalot');
+        tabActiveToggle(page1);
+    }
+    if(tab == 'mangaoku'){
+        readTextFile("mangaoku.html");
+        document.getElementById("content").innerHTML = inner;
+        console.log('Page = MangaOku');
+        tabActiveToggle(page2);
+    }
+    if(tab == 'manytoon'){
+        readTextFile("manytoon.html");
+        document.getElementById("content").innerHTML = inner;
+        console.log('Page = ManyToon');
+        tabActiveToggle(page3);
+    }
+    if(tab == 'readerdemo'){
+        readTextFile("readerdemo.html");
+        document.getElementById("content").innerHTML = inner;
+        console.log('Page = ReaderDemo');
+        tabActiveToggle(page4);
+    }
+}
+function tabActiveToggle(b1){
+    if(page1.classList.contains('active')){page1.classList.remove('active');}
+    if(page2.classList.contains('active')){page2.classList.remove('active');}
+    if(page3.classList.contains('active')){page3.classList.remove('active');}
+    if(page4.classList.contains('active')){page4.classList.remove('active');}
+    b1.classList.add('active');
+}
 function leftBarState() {
     if(state){
         if(sol1.classList.contains('solTwo')){
@@ -109,51 +146,26 @@ function leftBarState() {
             verticalMenu.classList.add('fadeout');
         }
     }    
-        /*if(state){
-        sizingEffect('sol1',95,250,true);
-        sizingEffect('sol2',95,250,true);
-    }else{
-        sizingEffect('sol1',250,95,true);
-        sizingEffect('sol2',250,95,true);
-    }
-    state = !state;*/
 }
-
-/*async function sizingEffect(elementId,size,toSize,widthOrHeight){
-    if(widthOrHeight){
-        if (size < toSize){
-            for (i= size ; i <= toSize ; i++){
-                pixel = i + 'px';
-                document.getElementById(elementId).style.width = pixel;
-                await sleep(1);
-                console.log('elementId = '+ elementId + ' // i = ' + i);
-            }
-        }
-        if (size > toSize){
-            for (i= size ; i >= toSize ; i--){
-                pixel = i + 'px';
-                document.getElementById(elementId).style.width = pixel;
-                await sleep(1); 
-                console.log('elementId = '+ elementId + ' // i = ' + i);
-            }
-        }
-    }else{
-        if (size < toSize){
-            for (i= size ; i < toSize ; i++){
-                pixel = i + 'px';
-                document.getElementById(elementId).style.height = pixel;
-                await sleep(1);
-            }
-        }
-        if (size > toSize){
-            for (i= size ; i > toSize ; i--){
-                pixel = i + 'px';
-                document.getElementById(elementId).style.height = pixel;
-                await sleep(1);
+var inner;
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                inner = allText;
             }
         }
     }
+    rawFile.send(null);
 }
+/*
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms)); //! For Sleep Time
 }*/
