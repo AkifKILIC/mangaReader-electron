@@ -21,6 +21,15 @@ body {
 .fadeout{
   animation: vanish 2s forwards;
 }
+.nopad{
+  padding: 0px !important;
+}
+.nomar{
+  margin: 0px !important;
+}
+.hor>*{
+width: auto;
+}
 #window-controls {
   display: grid;
   grid-template-columns: repeat(3, 38px);
@@ -162,16 +171,38 @@ body {
      opacity: 100%;    
     }
   }
-#verticalMenu a {
-  background-color : transparent;
-  color: white;
-}
-#verticalMenu a:hover{
-  background-color: #3f3f46 ;
-  color: white ;
-}
-#verticalMenu a.active{
-  background-color: #3f3f46 ;
-  border-color: #222226;
-  color: white;
-}
+  #verticalMenu a {
+    background-color : transparent;
+    color: white;
+    user-select: none;
+  }
+  #verticalMenu a:hover{
+    background-color: #3f3f46 ;
+    color: white ;
+  }
+  #verticalMenu a.active{
+    background-color: #3f3f46 ;
+    border-color: #222226;
+    color: white;
+  }
+
+  .horMenuItem{  
+    padding: 5px;
+    width: 125px;
+    height: 32px;
+    border-color: #222226;
+    background-color: transparent;
+    text-align: center;
+    border-width: 2px;
+    color: white;
+    user-select: none;
+  }
+  .horMenuItem:hover{
+    background-color: #3f3f46 ;
+    color: white ;
+  }
+  .horMenuItem .active{
+    background-color: #3f3f46 ;
+    border-color: #222226;
+    color: white;
+  }

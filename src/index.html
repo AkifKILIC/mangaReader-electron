@@ -44,15 +44,25 @@
             </div>
             <div class="col bg3" style="height: 81px;">
             </div>
-            <div class="col bg5" style="height: 32px;">
-              <div class="row" style="height: 32px;">
-                <div class="row">
-                  Vertical Menu
-                </div>
-                <div class="col-xs" style="width: 175px;">
-                  <div class="input-group-sm d-flex" style="height: 32px;">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <button class="btn btn-secondary btn-block" type="button"><i class="fas fa-search"></i></button>
+            <div class="col bg5 nomar nopad" style="height: 32px;">
+              <div class="row w-100 nomar nopad" style="height: 32px;">
+                <div class="row w-100 nomar hor justify-content-between">
+                  <div class="list-group list-group-horizontal">
+                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem">Favorites</a>
+                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem">Recent</a>
+                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem">Last Updated!</a>
+                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs nopad ml-auto" style="width: 175px;height: 32px;">
+                    <div class="input-group-sm d-flex">
+                      <input type="text" class="form-control" placeholder="Search">
+                      <button class="btn btn-secondary btn-block" type="button"><i class="fas fa-search"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>
