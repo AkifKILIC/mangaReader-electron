@@ -1,5 +1,7 @@
 const remote = require('electron').remote;
+const sqlite3 = require('sqlite3').verbose();
 
+let db = new sqlite3.Database(':memory:')
 const win = remote.getCurrentWindow();
  /* Note this is different to the
 html global `window` variable */
