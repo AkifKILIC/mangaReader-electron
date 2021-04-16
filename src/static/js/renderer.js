@@ -1,7 +1,13 @@
 const remote = require('electron').remote;
 const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database(':memory:')
+let db = new sqlite3.Database('static/db/db.db', (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log('Connected to the chinook database.');
+  });
+
 const win = remote.getCurrentWindow();
  /* Note this is different to the
 html global `window` variable */
