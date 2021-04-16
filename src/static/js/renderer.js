@@ -1,12 +1,5 @@
 const remote = require('electron').remote;
-const sqlite3 = require('sqlite3').verbose();
-
-let db = new sqlite3.Database('static/db/db.db', (err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    console.log('Connected to the chinook database.');
-  });
+const db = require('better-sqlite3')('src/static/db/db.db');
 
 const win = remote.getCurrentWindow();
  /* Note this is different to the
@@ -179,7 +172,12 @@ function readTextFile(file)
     }
     rawFile.send(null);
 }
+function data(){
+    const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = 0');
+    console.log(row.id, row.name);
+}
 /*
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms)); //! For Sleep Time
-}*/
+}
+*/
