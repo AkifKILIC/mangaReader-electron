@@ -173,7 +173,7 @@ function readTextFile(file)
     rawFile.send(null);
 }
 function data(){
-    const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = 0');
+    const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = ?').get(0);
     console.log(row.id, row.name);
 }
 /*
