@@ -61,10 +61,47 @@ const page3 = document.getElementById('p3');
 const page4 = document.getElementById('p4');
 function page(tab) { //*** For Tabs to Work for Content Change ***
     if(tab == 'mangakakalot'){
-        readTextFile("mangakakalot.html");
-        document.getElementById("content").innerHTML = inner;
+        pageStructure('mangakakalot',1);
+        document.getElementById("content").innerHTML = fullPage;
+        document.getElementById("content").innerHTML.replace('undefined' , '');
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
+    }
+    if(tab == 'mangaoku'){
+        readTextFile("mangaoku.html");
+        document.getElementById("content").innerHTML = inner;
+        document.getElementById("content").innerHTML.replace('undefined' , '');
+        console.log('Page = MangaOku');
+        tabActiveToggle(page2);
+    }
+    if(tab == 'manytoon'){
+        readTextFile("manytoon.html");
+        document.getElementById("content").innerHTML = inner;
+        console.log('Page = ManyToon');
+        tabActiveToggle(page3);
+    }
+    if(tab == 'readerdemo'){
+        readTextFile("readerdemo.html");
+        document.getElementById("content").innerHTML = inner;
+        console.log('Page = ReaderDemo');
+        tabActiveToggle(page4);
+    }
+}
+var fullPage;
+function pageStructure(tab,page){
+    var lastManga = 24 * page;
+    var firstManga = lastManga - 24 + 1;
+    if(tab == 'mangakakalot'){
+        for (i = firstManga; i <= lastManga; i++) {
+        const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = ?').get(i);
+        readTextFile("mangakakalot.html");
+        var inner1 = inner;
+        var inner2 = inner1.replace('taytil',row.name);
+        var inner3 = inner2.replace('image',row.image);
+        var inner4 = inner3.replace( /haref/g ,row.href);
+        var inner5 = inner4.replace( /content/g ,row.content);
+        fullPage = fullPage + inner5;
+      }
     }
     if(tab == 'mangaoku'){
         readTextFile("mangaoku.html");
@@ -85,6 +122,7 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
         tabActiveToggle(page4);
     }
 }
+
 function tabActiveToggle(b1){
     if(page1.classList.contains('active')){page1.classList.remove('active');}
     if(page2.classList.contains('active')){page2.classList.remove('active');}

@@ -3,6 +3,16 @@ body {
   margin: auto;
   color: white;
 }
+#content #card {
+  display: table;
+}
+#content #card .card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
 .sol {
   animation:collapse 2s forwards;
 }
