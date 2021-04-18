@@ -87,7 +87,7 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
         tabActiveToggle(page4);
     }
 }
-var fullPage;
+var fullPage = "";
 function pageStructure(tab,page){
     var lastManga = 24 * page;
     var firstManga = lastManga - 24 + 1;

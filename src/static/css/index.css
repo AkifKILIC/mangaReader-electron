@@ -13,6 +13,27 @@ body {
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
+#content #card {
+  font-size: 1rem;
+}
+#scrollbarRow::-webkit-scrollbar {
+  display: none;
+}
+@include media-breakpoint-up(sm){
+  #content #card {
+    font-size: 1.2rem;
+  }
+}
+@include media-breakpoint-up(md){
+  #content #card {
+    font-size: 1.4rem;
+  }
+}
+@include media-breakpoint-up(lg){
+  #content #card {
+    font-size: 1.5rem;
+  }
+}
 .sol {
   animation:collapse 2s forwards;
 }
