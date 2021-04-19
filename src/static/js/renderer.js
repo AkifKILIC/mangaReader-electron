@@ -88,6 +88,7 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
     }
 }
 var fullPage = "";
+var pagination = document.getElementsByClassName('page-link');
 function pageStructure(tab,page){
     var lastManga = 24 * page;
     var firstManga = lastManga - 24 + 1;
@@ -102,6 +103,14 @@ function pageStructure(tab,page){
         var inner5 = inner4.replace( /content/g ,row.content);
         fullPage = fullPage + inner5;
       }
+      pagination.forEach(element => {
+          if(element.classList.contains('active')){
+              element.classList.remove('active');
+          }
+          if(element.contains(page)){
+              element.classList.add('active');
+          }
+      });
     }
     if(tab == 'mangaoku'){
         readTextFile("mangaoku.html");
