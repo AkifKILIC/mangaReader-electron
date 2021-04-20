@@ -34,6 +34,30 @@ body {
     font-size: 1.5rem;
   }
 }
+.pagination{
+  justify-content: center;
+  user-select: none;
+  color: white;
+}
+.pagination .page-item{
+  height: 45px;
+  width: 45px;
+  border: #222226;
+  font-weight: bold;
+}
+.pagination .page-item .page-link{
+  padding: 9.5px;
+  text-align: center;
+  background: transparent;
+}
+.pagination .page-item:hover .page-link{
+  background: #222226;
+  border: transparent;
+}
+.pagination .active .page-link{
+  background: #222226;
+  border: transparent;
+}
 .sol {
   animation:collapse 2s forwards;
 }

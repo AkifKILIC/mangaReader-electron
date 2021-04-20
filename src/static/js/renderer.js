@@ -61,16 +61,13 @@ const page3 = document.getElementById('p3');
 const page4 = document.getElementById('p4');
 function page(tab) { //*** For Tabs to Work for Content Change ***
     if(tab == 'mangakakalot'){
-        pageStructure('mangakakalot',1);
-        document.getElementById("content").innerHTML = fullPage;
-        document.getElementById("content").innerHTML.replace('undefined' , '');
+        pageStructure('mangakakalot',currentPage);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
     }
     if(tab == 'mangaoku'){
         readTextFile("mangaoku.html");
         document.getElementById("content").innerHTML = inner;
-        document.getElementById("content").innerHTML.replace('undefined' , '');
         console.log('Page = MangaOku');
         tabActiveToggle(page2);
     }
@@ -87,12 +84,19 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
         tabActiveToggle(page4);
     }
 }
+var currentPage = 1;
 var fullPage = "";
-var pagination = document.getElementsByClassName('page-link');
+var pagination = document.getElementsByClassName('page-item');
 function pageStructure(tab,page){
+    currentPage = page;
     var lastManga = 24 * page;
     var firstManga = lastManga - 24 + 1;
+    document.getElementById("content").innerHTML = "";
+    fullPage = '';
     if(tab == 'mangakakalot'){
+        console.log('tabchanged');
+        console.log(firstManga);
+        console.log(lastManga);
         for (i = firstManga; i <= lastManga; i++) {
         const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = ?').get(i);
         readTextFile("mangakakalot.html");
@@ -102,15 +106,9 @@ function pageStructure(tab,page){
         var inner4 = inner3.replace( /haref/g ,row.href);
         var inner5 = inner4.replace( /content/g ,row.content);
         fullPage = fullPage + inner5;
+        document.getElementById("content").innerHTML = fullPage;
       }
-      pagination.forEach(element => {
-          if(element.classList.contains('active')){
-              element.classList.remove('active');
-          }
-          if(element.contains(page)){
-              element.classList.add('active');
-          }
-      });
+      pageOrder();
     }
     if(tab == 'mangaoku'){
         readTextFile("mangaoku.html");
@@ -219,9 +217,67 @@ function readTextFile(file)
     }
     rawFile.send(null);
 }
-function data(){
-    const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = ?').get(0);
-    console.log(row.id, row.name);
+function pageChange(current){
+    
+    if(current == 'minusx'){
+        if(min != currentPage){
+         pageStructure('mangakakalot',min);
+         cur--;
+        }
+    };
+    if(current == 'x'){
+        if(cur != currentPage){
+            pageStructure('mangakakalot',cur);
+        }
+    };
+    if(current == 'plusx'){
+         if(max != currentPage){
+            pageStructure('mangakakalot',max);
+            cur++;
+        }
+    };
+    pageOrder();
+}
+var min = 1;
+var cur = 2;
+var max = 3;
+function pageOrder(){
+    minText = min.toString();
+    curText = cur.toString();
+    maxText = max.toString();
+    console.log(min);
+    console.log(cur);
+    console.log(max);
+    console.log(currentPage);
+    if(currentPage == 1) {
+        for(i = 0 ; i < pagination.length; i++){
+            min = 1;
+            cur = 2;
+            max = 3;
+        }
+    }else{
+        for(i = 0 ; i < pagination.length; i++){
+            min = currentPage - 1;
+            cur = currentPage;
+            max = currentPage + 1; 
+        }
+    }
+    document.getElementById('pageFirst').innerText = min.toString();
+    document.getElementById('pageCur').innerText = cur.toString();
+    document.getElementById('pageLast').innerText = max.toString();
+    console.log('after change');
+    console.log(min.toString());
+    console.log(cur.toString());
+    console.log(max.toString());
+    for(i = 0; i < pagination.length; i++){
+        if(pagination[i].classList.contains('active')){
+          pagination[i].classList.remove('active');
+        }
+        if(pagination[i].firstChild.innerHTML == currentPage){
+          console.log('Changed');
+          pagination[i].classList.add('active');
+        }
+    };
 }
 /*
 function sleep(ms) {
