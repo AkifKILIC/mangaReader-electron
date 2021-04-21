@@ -94,10 +94,8 @@ function pageStructure(tab,page){
     document.getElementById("content").innerHTML = "";
     fullPage = '';
     if(tab == 'mangakakalot'){
-        console.log('tabchanged');
-        console.log(firstManga);
-        console.log(lastManga);
         for (i = firstManga; i <= lastManga; i++) {
+        if(i < (parseInt(lastPage.id) + 1)){
         const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = ?').get(i);
         readTextFile("mangakakalot.html");
         var inner1 = inner;
@@ -107,6 +105,7 @@ function pageStructure(tab,page){
         var inner5 = inner4.replace( /content/g ,row.content);
         fullPage = fullPage + inner5;
         document.getElementById("content").innerHTML = fullPage;
+        }
       }
       pageOrder();
     }
@@ -154,7 +153,6 @@ function leftBarState() {
         }
         sol1.classList.add('sol');
         sol2.classList.add('sol');
-    console.log('Didit');
     state = !state;
         if(leftBarButton.classList.contains('deActives')){
             leftBarButton.classList.remove('deActives');
@@ -181,7 +179,6 @@ function leftBarState() {
         }
         sol1.classList.add('solTwo');
         sol2.classList.add('solTwo');
-        console.log('Diditreverse');
         state = !state;    
         if(leftBarButton.classList.contains('actives')){
             leftBarButton.classList.remove('actives');
@@ -241,44 +238,49 @@ function pageChange(current){
 var min = 1;
 var cur = 2;
 var max = 3;
+var lastPage = db.prepare('SELECT * FROM MangakakalotHot ORDER BY ID DESC LIMIT 1').get();
 function pageOrder(){
     minText = min.toString();
     curText = cur.toString();
     maxText = max.toString();
-    console.log(min);
-    console.log(cur);
-    console.log(max);
-    console.log(currentPage);
+    var lastPageInt = Math.ceil(parseInt(lastPage.id)/24);
     if(currentPage == 1) {
-        for(i = 0 ; i < pagination.length; i++){
             min = 1;
             cur = 2;
             max = 3;
-        }
-    }else{
-        for(i = 0 ; i < pagination.length; i++){
+    };
+    if(currentPage != 1 && currentPage != lastPageInt) {
             min = currentPage - 1;
             cur = currentPage;
             max = currentPage + 1; 
-        }
-    }
+    };
+    if(currentPage == lastPageInt) {
+            min = lastPageInt - 2;
+            cur = lastPageInt - 1;
+            max = lastPageInt;
+    };
     document.getElementById('pageFirst').innerText = min.toString();
     document.getElementById('pageCur').innerText = cur.toString();
     document.getElementById('pageLast').innerText = max.toString();
-    console.log('after change');
-    console.log(min.toString());
-    console.log(cur.toString());
-    console.log(max.toString());
     for(i = 0; i < pagination.length; i++){
         if(pagination[i].classList.contains('active')){
           pagination[i].classList.remove('active');
-        }
+        };
         if(pagination[i].firstChild.innerHTML == currentPage){
-          console.log('Changed');
           pagination[i].classList.add('active');
-        }
+        };
     };
 }
+var pageInput = document.getElementById('pageSearch');
+
+pageInput.addEventListener('keyup', function(event){
+
+    if(event.keyCode === 13){
+        event.preventDefault();
+        pageStructure('mangakakalot',parseInt(document.querySelector("#pageSearch").value));
+        pageOrder();
+    }
+})
 /*
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms)); //! For Sleep Time

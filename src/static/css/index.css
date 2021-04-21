@@ -41,22 +41,23 @@ body {
 }
 .pagination .page-item{
   height: 45px;
-  width: 45px;
+  min-width: 45px;
   border: #222226;
   font-weight: bold;
 }
 .pagination .page-item .page-link{
   padding: 9.5px;
   text-align: center;
-  background: transparent;
+  background: #0d6efd;
+  color: white;
+  border: 1px hidden;
+  border-radius: 3;
 }
 .pagination .page-item:hover .page-link{
-  background: #222226;
-  border: transparent;
+  background: #0b5ed7;
 }
 .pagination .active .page-link{
-  background: #222226;
-  border: transparent;
+  background: #0b5ed7;
 }
 .sol {
   animation:collapse 2s forwards;
