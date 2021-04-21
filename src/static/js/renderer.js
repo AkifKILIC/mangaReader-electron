@@ -103,7 +103,14 @@ function pageStructure(tab,page){
         var inner3 = inner2.replace('image',row.image);
         var inner4 = inner3.replace( /haref/g ,row.href);
         var inner5 = inner4.replace( /content/g ,row.content);
-        fullPage = fullPage + inner5;
+        if(row.updated == 1){
+            var inner6 = inner5.replace(/gorunurluk/g , '100%');
+            console.log("updated " + row.name);
+            fullPage = fullPage + inner6;
+        }else{
+            var inner6 = inner5.replace(/gorunurluk/g , '0%');
+            fullPage = fullPage + inner6;
+        }
         document.getElementById("content").innerHTML = fullPage;
         }
       }
