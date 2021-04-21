@@ -222,7 +222,12 @@ function readTextFile(file)
     rawFile.send(null);
 }
 function pageChange(current){
-    
+    if(current == 'first'){
+        if(min != currentPage){
+         pageStructure('mangakakalot',1);
+         cur = 1;
+        }
+    };
     if(current == 'minusx'){
         if(min != currentPage){
          pageStructure('mangakakalot',min);
@@ -240,17 +245,23 @@ function pageChange(current){
             cur++;
         }
     };
+    if(current == 'last'){
+         if(max != currentPage){
+            pageStructure('mangakakalot',lastPageInt);
+            cur = lastPageInt;
+        }
+    };
     pageOrder();
 }
 var min = 1;
 var cur = 2;
 var max = 3;
 var lastPage = db.prepare('SELECT * FROM MangakakalotHot ORDER BY ID DESC LIMIT 1').get();
+var lastPageInt = Math.ceil(parseInt(lastPage.id)/24);
 function pageOrder(){
     minText = min.toString();
     curText = cur.toString();
     maxText = max.toString();
-    var lastPageInt = Math.ceil(parseInt(lastPage.id)/24);
     if(currentPage == 1) {
             min = 1;
             cur = 2;

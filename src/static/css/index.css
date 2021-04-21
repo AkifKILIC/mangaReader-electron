@@ -6,6 +6,18 @@ body {
 #content #card {
   display: table;
 }
+#pageSearch {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+#buttonLast {
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+}
+#buttonFirst {
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}
 #content #card .card-text {
     overflow: hidden;
     text-overflow: ellipsis;

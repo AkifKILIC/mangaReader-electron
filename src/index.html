@@ -129,12 +129,13 @@
           </div>
         <div class="row w-100" style="height: 45px;justify-content: center;">
           <ul class="pagination " id="pagination">  
+            <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange('first')"><span aria-hidden="true">&laquo;</span></a></li>
             <li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange('minusx')">1</a></li>
             <li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange('x')">2</a></li>
             <li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange('plusx')">3</a></li>
+            <li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange('last')"><span aria-hidden="true">&raquo;</span></a></li>
             <input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;">
           </ul>
-
         </div>
         </div>
         </div>
