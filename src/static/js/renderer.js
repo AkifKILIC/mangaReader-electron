@@ -298,7 +298,11 @@ pageInput.addEventListener('keyup', function(event){
         pageStructure('mangakakalot',parseInt(document.querySelector("#pageSearch").value));
         pageOrder();
     }
-})
+});
+
+function update(){
+}
+
 /*
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms)); //! For Sleep Time
