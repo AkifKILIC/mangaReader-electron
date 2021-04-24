@@ -25,13 +25,13 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
   require('@electron/remote/main').initialize();
-  var child = require('child_process').execFile;
+  /*var child = require('child_process').execFile;
   var executablePath = "src\\static\\db\\app\\MangakakalotDatabase.exe";
   var parameters = ["update"];
   child(executablePath, parameters, function(err, data) {
       console.log(err)
       console.log(data.toString());
- });
+ });*/
 };
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

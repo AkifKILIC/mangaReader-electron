@@ -10,6 +10,14 @@ body {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
 }
+.MangaorReader {
+  width: fit-content;
+  height: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+}
 #buttonLast {
   border-top-right-radius: 0.8rem;
   border-bottom-right-radius: 0.8rem;

@@ -87,11 +87,12 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
 var currentPage = 1;
 var fullPage = "";
 var pagination = document.getElementsByClassName('page-item');
+var pageContent = document.getElementById("content");
 function pageStructure(tab,page){
     currentPage = page;
     var lastManga = 24 * page;
     var firstManga = lastManga - 24 + 1;
-    document.getElementById("content").innerHTML = "";
+    pageContent.innerHTML = "";
     fullPage = '';
     if(tab == 'mangakakalot'){
         for (i = firstManga; i <= lastManga; i++) {
@@ -111,8 +112,12 @@ function pageStructure(tab,page){
             var inner6 = inner5.replace(/gorunurluk/g , '0%');
             fullPage = fullPage + inner6;
         }
-        document.getElementById("content").innerHTML = fullPage;
+        pageContent.innerHTML = fullPage;
         }
+      }      
+      if(pageContent.classList.contains('MangaorReader')){
+      }else{
+          pageContent.classList.add('MangaorReader');
       }
       pageOrder();
     }
@@ -120,6 +125,7 @@ function pageStructure(tab,page){
         readTextFile("mangaoku.html");
         document.getElementById("content").innerHTML = inner;
         console.log('Page = MangaOku');
+        document.getElementById("content").getAttribute("style").value = "";
         tabActiveToggle(page2);
     }
     if(tab == 'manytoon'){
@@ -129,7 +135,10 @@ function pageStructure(tab,page){
         tabActiveToggle(page3);
     }
     if(tab == 'readerdemo'){
-        readTextFile("readerdemo.html");
+        readTextFile("readerdemo.html");      
+        if(pageContent.classList.contains('MangaorReader')){
+            pageContent.classList.remove('MangaorReader');
+        }
         document.getElementById("content").innerHTML = inner;
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
@@ -299,9 +308,6 @@ pageInput.addEventListener('keyup', function(event){
         pageOrder();
     }
 });
-
-function update(){
-}
 
 /*
 function sleep(ms) {
