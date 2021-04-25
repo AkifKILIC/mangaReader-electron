@@ -64,24 +64,33 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
         pageStructure('mangakakalot',currentPage);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
+        document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
     if(tab == 'mangaoku'){
         readTextFile("mangaoku.html");
         document.getElementById("content").innerHTML = inner;
         console.log('Page = MangaOku');
         tabActiveToggle(page2);
+        document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
     if(tab == 'manytoon'){
         readTextFile("manytoon.html");
         document.getElementById("content").innerHTML = inner;
         console.log('Page = ManyToon');
         tabActiveToggle(page3);
+        document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
     if(tab == 'readerdemo'){
         readTextFile("readerdemo.html");
         document.getElementById("content").innerHTML = inner;
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
+        var img = document.getElementById('img');
+        img.onload = function () { 
+            img.offsetWidth = (img.offsetWidth - (img.naturalHeight - img.offsetHeight));
+            console.log(img.naturalHeight + '  /  ' + img.offsetHeight)
+        };
+        document.getElementById('pagination').style.cssText = 'opacity : 0%;';
     }
 }
 var currentPage = 1;
