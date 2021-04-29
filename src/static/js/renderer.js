@@ -88,7 +88,6 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
         var img = document.getElementById('img');
         img.onload = function () { 
             img.offsetWidth = (img.offsetWidth - (img.naturalHeight - img.offsetHeight));
-            console.log(img.naturalHeight + '  /  ' + img.offsetHeight)
         };
         document.getElementById('pagination').style.cssText = 'opacity : 0%;';
     }
@@ -115,7 +114,6 @@ function pageStructure(tab,page){
         var inner5 = inner4.replace( /content/g ,row.content);
         if(row.updated == 1){
             var inner6 = inner5.replace(/gorunurluk/g , '100%');
-            console.log("updated " + row.name);
             fullPage = fullPage + inner6;
         }else{
             var inner6 = inner5.replace(/gorunurluk/g , '0%');

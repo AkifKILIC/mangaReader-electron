@@ -7,3 +7,6 @@ function chapterLeft(){
 function chapterRight(){
     console.log("right");
 };
+function loadChapter(){
+
+};
