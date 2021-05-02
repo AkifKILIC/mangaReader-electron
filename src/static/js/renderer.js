@@ -316,8 +316,6 @@ pageInput.addEventListener('keyup', function(event){
     }
 });
 
-/*
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms)); //! For Sleep Time
 }
-*/

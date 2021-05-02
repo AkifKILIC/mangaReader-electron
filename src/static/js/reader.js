@@ -11,21 +11,26 @@ function chapterRight(){
     console.log("right");
 };
 var startUp = '<div class="col nopad page-left" id="left" onclick="chapterLeft()"></div><div class="col nopad page-right" id="right" onclick="chapterRight()"></div>';
+var newImages = '';
 function loadChapter(){
-    if(_body == null || _body == ''){
-        request(options,callback);
+    request(options,callback);
+    sleep(500);
+    var el = document.createElement('html');
+    el.innerHTML = _body;
+    var el2 = el.getElementsByClassName('container-chapter-reader');
+    if(el2.length == 1){
+        var el3 = el2.item(0).getElementsByTagName('img');
+        newImages = startUp;
+        for (i = 0; i < cars.length; i++) {
+            newImages = newImages + '<img src="' + el3.item(i).getAttribute('src') + '" id="img'+ i +'" style="width: auto;">' ;
+        }
+        document.getElementById('con').innerHTML = newImages;
     }else{
-        var el = document.createElement('html');
-        el.innerHTML = _body;
-        var el2 = el.getElementsByClassName('container-chapter-reader');
-        var el3 = el2[0];
-        var el4 = el3.children();
-        var newImages = startUp;
-        //el3.forEach(element => {
-        //    newImages = newImages + '<img src="' + element
-        //});
-        console.log(el4);
+        loadChapter();
     }
+    //el3.forEach(element => {
+    //    newImages = newImages + '<img src="' + element
+    //});
 };
 var _body;
 var _url = 'https://manganelo.com/chapter/hyer5231574354229/chapter_1';
