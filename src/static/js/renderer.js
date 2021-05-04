@@ -85,10 +85,10 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
         document.getElementById("content").innerHTML = inner;
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
-        var img = document.getElementById('img');
-        img.onload = function () { 
-            img.offsetWidth = (img.offsetWidth - (img.naturalHeight - img.offsetHeight));
-        };
+        //var img = document.getElementById('img');
+        //img.onload = function () { 
+        //    img.offsetWidth = (img.offsetWidth - (img.naturalHeight - img.offsetHeight));
+        //};
         document.getElementById('pagination').style.cssText = 'opacity : 0%;';
     }
 }
