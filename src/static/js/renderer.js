@@ -83,6 +83,7 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
     if(tab == 'readerdemo'){
         readTextFile("readerdemo.html");
         document.getElementById("content").innerHTML = inner;
+        loadChapter('https://manganelo.com/chapter/hyer5231574354229/chapter_1');
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
         //var img = document.getElementById('img');
@@ -316,6 +317,3 @@ pageInput.addEventListener('keyup', function(event){
     }
 });
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms)); //! For Sleep Time
-}

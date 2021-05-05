@@ -2,7 +2,7 @@
     
 const request = require('request');
 const { session } = require('electron');
-var fs = require('fs');
+const fs = require('fs');
 const { WriteStream } = require('tty');
 
 
@@ -16,34 +16,62 @@ function chapterRight(){
 };
 var startUp = '<div class="col nopad page-left" id="left" onclick="chapterLeft()"></div><div class="col nopad page-right" id="right" onclick="chapterRight()"></div>';
 var newImages = '';
+var temp = 1;
+var elText = '';
 function loadChapter(url){
-    _url = url;
+    options.url = url;
     var el = document.createElement('html');
-    request(options).pipe(fs.createWriteStream('src/static/db/temp.txt'));
-    var fr = new XMLHttpRequest();
-    fr.open('GET','static/db/temp.txt',false);
-    fr.onreadystatechange = function(){
-        if(fr.readyState === 4){
-            if(fr.status === 200 || fr.status === 0){
-                el.innerHTML = fr.responseText;
+    request(options).pipe(fs.createWriteStream('src/static/temp/temp.txt')).on('complete', function(){
+        fs.readFile('src/static/temp/temp.txt', 'utf-8', (err, data) => {
+            if(err){
+                alert("An error ocurred reading the file :" + err.message);
+                return;
             }
+            console.log(data);
+            el.innerHTML = data;
+        });
+        el.innerHTML = elText.toString();
+        var el2 = el.getElementsByClassName('container-chapter-reader');
+        if(el2.length == 1){
+            var el3 = el2.item(0).getElementsByTagName('img');
+            newImages = startUp;
+            options2.headers.Referer = url.replace(_url.split('/')[5], '');
+            for (i = 0; i < el3.length; i++) {
+                options2.url = el3.item(i).getAttribute('src');
+                request(options2).pipe(fs.createWriteStream('src/static/temp/imgtemp/temp'+ i +'.txt'))
+                .on('complete', function(){
+                    newImages = newImages + '<img src="'+ 'static/temp/imgtemp/temp'+ i +'.txt' +'" id="img'+ i +'" style="width: auto;">';
+                    }
+                )
+                
+            }
+            document.getElementById('con').innerHTML = newImages;
+            /*for(i = 0; i < el3.length; i++){
+                fs.unlink('src/static/temp/imgtemp/temp'+ i +'.txt', (err) => {
+                    if(err){
+                        alert(err);
+                        throw err;
+                    }
+                });
+            }*/
+        }else{
+            console.error('el2 has no element!!!');
         }
-    }
-    fr.send(null);
-    var el2 = el.getElementsByClassName('container-chapter-reader');
-    if(el2.length == 1){
-        var el3 = el2.item(0).getElementsByTagName('img');
-        newImages = startUp;
-        for (i = 0; i < el3.length; i++) {
-            _imgUrl = el3.item(i).getAttribute('src');
-            request(options2).pipe(fs.createWriteStream('src/static/temp/imgtemp/'+'temp'+ i +'.txt'));
+      }
+    )
+    fs.unlink('src/static/temp/temp.txt', (err) => {
+        if(err){
+            alert(err);
+            throw err;
         }
-        for (i = 0; i < el3.length; i++) {
-            newImages = newImages + '<img src="'+ 'src/static/temp/imgtemp/temp'+ i +'.txt' +'" id="img'+ i +'" style="width: auto;">' ;
-        }
-        document.getElementById('con').innerHTML = newImages;
-    }
-};
+    })
+}
+function rQuest(option,path){
+    request(option).pipe(fs.createWriteStream(path));
+}
+function readFile(path){
+
+}
 var _url = 'https://manganelo.com/chapter/hyer5231574354229/chapter_1';
 var _imgUrl = '';
 var _refUrl = _url.replace(_url.split('/')[5], '');
@@ -88,3 +116,6 @@ const options2 = {
       "Referer" : _refUrl.toString()
     }
 };
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
