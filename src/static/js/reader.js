@@ -21,50 +21,51 @@ var elText = '';
 function loadChapter(url){
     options.url = url;
     var el = document.createElement('html');
-    request(options).pipe(fs.createWriteStream('src/static/temp/temp.txt')).on('complete', function(){
-        fs.readFile('src/static/temp/temp.txt', 'utf-8', (err, data) => {
-            if(err){
-                alert("An error ocurred reading the file :" + err.message);
-                return;
-            }
-            console.log(data);
-            el.innerHTML = data;
-        });
-        el.innerHTML = elText.toString();
-        var el2 = el.getElementsByClassName('container-chapter-reader');
-        if(el2.length == 1){
-            var el3 = el2.item(0).getElementsByTagName('img');
-            newImages = startUp;
-            options2.headers.Referer = url.replace(_url.split('/')[5], '');
-            for (i = 0; i < el3.length; i++) {
-                options2.url = el3.item(i).getAttribute('src');
-                request(options2).pipe(fs.createWriteStream('src/static/temp/imgtemp/temp'+ i +'.txt'))
-                .on('complete', function(){
-                    newImages = newImages + '<img src="'+ 'static/temp/imgtemp/temp'+ i +'.txt' +'" id="img'+ i +'" style="width: auto;">';
-                    }
-                )
-                
-            }
-            document.getElementById('con').innerHTML = newImages;
-            /*for(i = 0; i < el3.length; i++){
-                fs.unlink('src/static/temp/imgtemp/temp'+ i +'.txt', (err) => {
-                    if(err){
-                        alert(err);
-                        throw err;
-                    }
-                });
-            }*/
+    request(options).pipe(fs.createWriteStream('src/static/temp/temp.txt'));
+    fs.stat('src/static/temp/temp.txt', (err,stat) => { 
+        if(err){
+            console.log('error ocurred == ' + err.message);
         }else{
-            console.error('el2 has no element!!!');
+            console.log(stat);
+            fs.readFile('src/static/temp/temp.txt', 'utf-8', (err, data) => {
+                if(err){
+                    alert("An error ocurred reading the file :" + err.message);
+                    return;
+                }
+                console.log(data);
+                el.innerHTML = data;}
+            );
         }
-      }
-    )
-    fs.unlink('src/static/temp/temp.txt', (err) => {
+    })
+    el.innerHTML = elText.toString(6);
+    var el2 = el.getElementsByClassName('container-chapter-reader');
+    if(el2.length == 1){
+        var el3 = el2.item(0).getElementsByTagName('img');
+        newImages = startUp;
+        options2.headers.Referer = url.replace(_url.split('/')[5], '');
+        for (i = 0; i < el3.length; i++) {
+            options2.url = el3.item(i).getAttribute('src');
+            request(options2).pipe(fs.createWriteStream('src/static/temp/imgtemp/temp'+ i +'.txt'));
+            newImages = newImages + '<img src="'+ 'static/temp/imgtemp/temp'+ i +'.txt' +'" id="img'+ i +'" style="width: auto;">';
+        }
+        document.getElementById('con').innerHTML = newImages;
+        /*for(i = 0; i < el3.length; i++){
+            fs.unlink('src/static/temp/imgtemp/temp'+ i +'.txt', (err) => {
+                if(err){
+                    alert(err);
+                    throw err;
+                }
+            });
+        }*/
+    }else{
+        console.error('el2 has no element!!!');
+    }
+    /*fs.unlink('src/static/temp/temp.txt', (err) => {
         if(err){
             alert(err);
             throw err;
         }
-    })
+    })*/
 }
 function rQuest(option,path){
     request(option).pipe(fs.createWriteStream(path));
