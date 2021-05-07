@@ -1,6 +1,4 @@
 
-    
-const request = require('request');
 const { session } = require('electron');
 const fs = require('fs');
 const { WriteStream } = require('tty');
@@ -16,27 +14,33 @@ function chapterRight(){
 };
 var startUp = '<div class="col nopad page-left" id="left" onclick="chapterLeft()"></div><div class="col nopad page-right" id="right" onclick="chapterRight()"></div>';
 var newImages = '';
-var temp = 1;
 var elText = '';
-function loadChapter(url){
+async function getTextFromStream(readableStream) {
+    let reader = readableStream.getReader();
+    let utf8Decoder = new TextDecoder();
+    let nextChunk;
+    
+    let resultStr = '';
+    
+    while (!(nextChunk = await reader.read()).done) {
+        let partialData = nextChunk.value;
+        resultStr += utf8Decoder.decode(partialData);
+    }
+    
+    return resultStr;
+}
+async function loadChapter(url){
     options.url = url;
     var el = document.createElement('html');
-    request(options).pipe(fs.createWriteStream('src/static/temp/temp.txt'));
-    fs.stat('src/static/temp/temp.txt', (err,stat) => { 
-        if(err){
-            console.log('error ocurred == ' + err.message);
-        }else{
-            console.log(stat);
-            fs.readFile('src/static/temp/temp.txt', 'utf-8', (err, data) => {
-                if(err){
-                    alert("An error ocurred reading the file :" + err.message);
-                    return;
-                }
-                console.log(data);
-                el.innerHTML = data;}
-            );
+    let response =  await fetch(url,{
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125',
+            'Referer' : _refUrl
         }
-    })
+    });
+    let responseText = await getTextFromStream(response.body);
+    el.innerHTML = responseText;
+    fs.readFile('src/static/temp/temp.txt', 'utf-8');
     el.innerHTML = elText.toString(6);
     var el2 = el.getElementsByClassName('container-chapter-reader');
     if(el2.length == 1){
@@ -56,11 +60,11 @@ function loadChapter(url){
                     throw err;
                 }
             });
-        }*/
+        }
     }else{
         console.error('el2 has no element!!!');
     }
-    /*fs.unlink('src/static/temp/temp.txt', (err) => {
+    fs.unlink('src/static/temp/temp.txt', (err) => {
         if(err){
             alert(err);
             throw err;
@@ -79,8 +83,7 @@ var _refUrl = _url.replace(_url.split('/')[5], '');
 const options = {
     url: _url.toString(),
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125',
-      "Referer" : _refUrl.toString()
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125'
     }
 };
 /*
