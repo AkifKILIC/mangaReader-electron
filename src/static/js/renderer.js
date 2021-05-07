@@ -83,7 +83,6 @@ function page(tab) { //*** For Tabs to Work for Content Change ***
     if(tab == 'readerdemo'){
         readTextFile("readerdemo.html");
         document.getElementById("content").innerHTML = inner;
-        loadChapter('https://manganelo.com/chapter/hyer5231574354229/chapter_1');
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
         //var img = document.getElementById('img');
@@ -111,7 +110,8 @@ function pageStructure(tab,page){
         var inner1 = inner;
         var inner2 = inner1.replace('taytil',row.name);
         var inner3 = inner2.replace('image',row.image);
-        var inner4 = inner3.replace( /haref/g ,row.href);
+        var hrefF = "mangaToReader('" + row.href + "')";
+        var inner4 = inner3.replace( /haref/g ,hrefF);
         var inner5 = inner4.replace( /content/g ,row.content);
         if(row.updated == 1){
             var inner6 = inner5.replace(/gorunurluk/g , '100%');
@@ -153,12 +153,13 @@ function pageStructure(tab,page){
     }
 }
 
-function tabActiveToggle(b1){
+async function tabActiveToggle(b1){
     if(page1.classList.contains('active')){page1.classList.remove('active');}
     if(page2.classList.contains('active')){page2.classList.remove('active');}
     if(page3.classList.contains('active')){page3.classList.remove('active');}
     if(page4.classList.contains('active')){page4.classList.remove('active');}
     b1.classList.add('active');
+    return true;
 }
 function tabDisable(){
     page1.classList.toggle('disabled');
