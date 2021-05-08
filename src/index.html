@@ -121,29 +121,45 @@
           <a id="p4" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('readerdemo')">ReaderDemo <span class="badge bg-primary rounded-pill">14</span></a>
         </div>
         </div>
-        <div class="col bg4 nomar nopad" style="max-height: 100%;max-width: 100%;">
-          <div class="row nomar" id="scrollbarRow" style="height: calc(100% - 45px);width: 100%;overflow: scroll;">
+        <div class="col bg4 nomar nopad" style="max-height: 100%;max-width: 100%;" id="bottomRight">
+          <div class="row nomar" id="scrollbarRow" style="height: 100%;width: 100%;overflow: scroll;">
             <div class="row row h-100 w-100 nomar nopad" id="content"> <!-- width: fit-content;height: fit-content;margin-right: auto;margin-left: auto;display: flex;justify-content: center; -->
               
+
+
+              <div class="col-xs w-25 d-block" style="background-image: linear-gradient(90deg, transparent, #222226);">
+                <img class="img-thumbnail d-block" src="https://avt.mkklcdnv6temp.com/19/v/1-1583464475.jpg" style="margin-left: auto;background-color: #222226;border-color: black;">
+                <p class="text-end fs-6">Genres :	Action - Adventure - Comedy - Drama - Fantasy - Harem - Romance - Shounen - Manhua</p>
+              </div>
+              <div class="col nopad bg">
+                <div class="row-xs nomar nopad d-flex" style="background-color: #222226;height: 250px;flex-direction:column">
+                    <p class="text-primary w-100 fs-1 mb-0">Tales of Demons and Gods</p>
+                    <p class="text-danger w-100 fs-5 mb-0">Author(s) : Mad Snail</p>
+                    <p class="text-warning w-100 fs-6 mb-0" style="margin-top:auto;">Description :</p>
+                    <p class="text-wrap d-block w-100 fs-6 mb-0" >Nie Li, one of the strongest Demon Spiritist in his past life standing at the pinnacle of the martial world , however he lost his life during the battle with Sage Emperor and the six deity ranked beast, his soul was then reborn back in time back to when he is still 13. Although he’s the weakest in his class with the lowest talent at only Red soul realm, with the aid of the vast knowledge which he accumulated in his previous life, he trained faster then anyone. Trying to protect the city which in the coming future was being assaulted by beast and ended up being destroyed as well as protecting his lover, friends and family who died by the beast assault. and to destroy the Sacred family whom abandon their duty and betrayed the city in his past life.</p>
+                </div>
+                <div class="row  nomar nopad" style="background-image: linear-gradient(180deg, #222226, transparent);height: calc(100% - 250px);">
+                  <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                      The current button
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action">A second item</button>
+                    <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                    <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
+                  </div>
+                </div>
+              </div>
+
+
+
             </div>
           </div>
-        <div class="row w-100" style="height: 45px;justify-content: center;">
-          <ul class="pagination " id="pagination" style="opacity: 0%;">  
-            <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange('first')"><span aria-hidden="true">&laquo;</span></a></li>
-            <li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange('minusx')">1</a></li>
-            <li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange('x')">2</a></li>
-            <li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange('plusx')">3</a></li>
-            <li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange('last')"><span aria-hidden="true">&raquo;</span></a></li>
-            <input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;">
-          </ul>
-        </div>
         </div>
         </div>
       </div>
     </div>
-    <script src="C:\Users\shini\source\repos\Demo\mangaReader-v2\mangaReader-v2\node_modules\jquery\dist\jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="static/js/renderer.js"></script>
-    <script src="static/js/reader.js"></script>
   </body>
 </html>

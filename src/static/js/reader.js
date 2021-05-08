@@ -1,9 +1,4 @@
 
-const { session } = require('electron');
-const fs = require('fs');
-const { WriteStream } = require('tty');
-
-
 var chapterPageLeft = document.getElementById("left");
 var chapterPageRight = document.getElementById("right");
 var _url = 'https://manganelo.com/chapter/hyer5231574354229/chapter_1';
@@ -56,14 +51,6 @@ async function loadChapter(url){
     }else{
         console.error('el2 has no element!!!');
     }
-}
-async function mangaToReader(url){
-    readTextFile("readerdemo.html");
-    document.getElementById("content").innerHTML = inner;
-    console.log('Page = ReaderDemo');
-    var lol = await tabActiveToggle(page4);
-    document.getElementById('pagination').style.cssText = 'opacity : 0%;';
-    loadChapter(url);
 }
 
 async function getTextFromStream(readableStream) {
