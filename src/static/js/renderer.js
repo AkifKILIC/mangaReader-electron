@@ -12,6 +12,12 @@ document.onreadystatechange = (event) => {
     }
 };
 
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+
+async function toggleModal(input){
+    myModal.toggle();
+    console.log(input);
+}
 window.onbeforeunload = (event) => {
     /* If window is reloaded, remove win event listeners
     (DOM element listeners get auto garbage collected but not
@@ -69,6 +75,7 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         await $.cachedScript('static/js/mangakakalot.js').done(function(script,textStatus) {
             console.log(textStatus);
         });
+        $.cach
         pageStructure('mangakakalot',currentPage);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
@@ -186,10 +193,10 @@ function readTextFile(file)
     }
     rawFile.send(null);
 }
-jQuery.cachedScript = function( url, options ) {
+jQuery.cachedScript = function( url, options) {
     // Allow user to set any option except for dataType, cache, and url
     options = $.extend( options || {}, {
-      dataType: "script",
+      dataType: 'script',
       cache: true,
       url: url
     });

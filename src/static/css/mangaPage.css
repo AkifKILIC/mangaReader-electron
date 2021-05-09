@@ -1,0 +1,16 @@
+.paduc{ 
+    padding: 10px;
+}
+.desc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+.closeButton{
+    position: absolute;    
+    right: 0px;
+    top: 12px;
+    background-color: #ffffff21;
+}
