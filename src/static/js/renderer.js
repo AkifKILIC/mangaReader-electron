@@ -12,10 +12,14 @@ document.onreadystatechange = (event) => {
     }
 };
 
-var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
 
 async function toggleModal(input){
-    myModal.toggle();
+    await $.cachedScript('static/js/mangapage.js').done(function(script,textStatus) {
+        console.log( "Status  :  " + textStatus);
+    });
+    modalEnable(input);
+    /* Notevar myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+    myModal.toggle();*/
     console.log(input);
 }
 window.onbeforeunload = (event) => {
@@ -75,7 +79,6 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         await $.cachedScript('static/js/mangakakalot.js').done(function(script,textStatus) {
             console.log(textStatus);
         });
-        $.cach
         pageStructure('mangakakalot',currentPage);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
@@ -204,4 +207,20 @@ jQuery.cachedScript = function( url, options) {
     // Return the jqXHR object so we can chain callbacks
     return jQuery.ajax( options );
   };
-  
+  async function getTextFromStream(readableStream) {
+    let reader = readableStream.getReader();
+    let utf8Decoder = new TextDecoder();
+    let nextChunk;
+    
+    let resultStr = '';
+    
+    while (!(nextChunk = await reader.read()).done) {
+        let partialData = nextChunk.value;
+        resultStr += utf8Decoder.decode(partialData);
+    }
+    
+    return resultStr;
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
