@@ -2,7 +2,7 @@ var currentPage = 1;
 var fullPage = "";
 var pageContent = document.getElementById("content");
 
-function pageStructure(tab,page) { // TODO: Make it look Nice 
+function pageStructure(tab,page) {  // TODO: Make it look Nice 
     currentPage = page;
     var lastManga = 24 * page;
     var firstManga = lastManga - 24 + 1;

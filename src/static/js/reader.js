@@ -39,7 +39,6 @@ async function loadChapter(url){
     });
     let responseText = await getTextFromStream(response.body);
     el.innerHTML = responseText;
-    console.log(el.innerHTML);
     var el2 = el.getElementsByClassName('container-chapter-reader');
     if(el2.length == 1){
         var el3 = el2.item(0).getElementsByTagName('img');
@@ -53,20 +52,3 @@ async function loadChapter(url){
     }
 }
 
-async function getTextFromStream(readableStream) {
-    let reader = readableStream.getReader();
-    let utf8Decoder = new TextDecoder();
-    let nextChunk;
-    
-    let resultStr = '';
-    
-    while (!(nextChunk = await reader.read()).done) {
-        let partialData = nextChunk.value;
-        resultStr += utf8Decoder.decode(partialData);
-    }
-    
-    return resultStr;
-}
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
