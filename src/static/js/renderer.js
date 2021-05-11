@@ -12,14 +12,17 @@ document.onreadystatechange = (event) => {
     }
 };
 
+var myModal;
+var url;
+var el3;
+var el2;
+var sec;
 
 async function toggleModal(input){
     await $.cachedScript('static/js/mangapage.js').done(function(script,textStatus) {
         console.log( "Status  :  " + textStatus);
     });
     modalEnable(input);
-    /* Notevar myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
-    myModal.toggle();*/
     console.log(input);
 }
 window.onbeforeunload = (event) => {
@@ -84,22 +87,19 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         tabActiveToggle(page1);
     }
     if(tab == 'mangaoku'){
-        readTextFile("mangaoku.html");
-        document.getElementById("content").innerHTML = inner;
+        document.getElementById("content").innerHTML = readTextFile("mangaoku.html");
         console.log('Page = MangaOku');
         tabActiveToggle(page2);
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
     if(tab == 'manytoon'){
-        readTextFile("manytoon.html");
-        document.getElementById("content").innerHTML = inner;
+        document.getElementById("content").innerHTML = readTextFile("manytoon.html");
         console.log('Page = ManyToon');
         tabActiveToggle(page3);
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
     if(tab == 'readerdemo'){
-        readTextFile("readerdemo.html");
-        document.getElementById("content").innerHTML = inner;
+        document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
         //var img = document.getElementById('img');
@@ -178,9 +178,9 @@ function leftBarState() {
         }
     }
 }
-var inner;
 function readTextFile(file)
 {
+    var allText;
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
@@ -189,12 +189,12 @@ function readTextFile(file)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-                var allText = rawFile.responseText;
-                inner = allText;
+                allText = rawFile.responseText;
             }
         }
     }
     rawFile.send(null);
+    return allText;
 }
 jQuery.cachedScript = function( url, options) {
     // Allow user to set any option except for dataType, cache, and url

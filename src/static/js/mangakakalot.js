@@ -12,11 +12,10 @@ function pageStructure(tab,page) {  // TODO: Make it look Nice
         for (i = firstManga; i <= lastManga; i++) {
             if(i < (parseInt(lastPage.id) + 1)){
             const row = db.prepare('SELECT * FROM MangakakalotHot WHERE id = ?').get(i);
-            readTextFile("mangakakalot.html");
-            var inner1 = inner;
+            var inner1 = readTextFile("mangakakalot.html");
             var inner2 = inner1.replace('taytil',row.name);
             var inner3 = inner2.replace('image',row.image);
-            var hrefF = "mangaToReader('" + row.href + "')";
+            var hrefF = "modalEnable('" + row.href + "')";
             var inner4 = inner3.replace( /haref/g ,hrefF);
             var inner5 = inner4.replace( /content/g ,row.content);
             if(row.updated == 1){
@@ -36,32 +35,30 @@ function pageStructure(tab,page) {  // TODO: Make it look Nice
             pageOrder();
     }
     if(tab == 'mangaoku'){
-        readTextFile("mangaoku.html");
-        document.getElementById("content").innerHTML = inner;
+        
+        document.getElementById("content").innerHTML = readTextFile("mangaoku.html");
         console.log('Page = MangaOku');
         document.getElementById("content").getAttribute("style").value = "";
         tabActiveToggle(page2);
     }
     if(tab == 'manytoon'){
-        readTextFile("manytoon.html");
-        document.getElementById("content").innerHTML = inner;
+        document.getElementById("content").innerHTML = readTextFile("manytoon.html");
         console.log('Page = ManyToon');
         tabActiveToggle(page3);
     }
     if(tab == 'readerdemo'){
-        readTextFile("readerdemo.html");      
+             
         if(pageContent.classList.contains('MangaorReader')){
             pageContent.classList.remove('MangaorReader');
         }
-        document.getElementById("content").innerHTML = inner;
+        document.getElementById("content").innerHTML = readTextFile("readerdemo.html"); 
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
     }
 }
 
-async function mangaToReader(url){
-    readTextFile("readerdemo.html");
-    document.getElementById("content").innerHTML = inner;
+async function chapterToReader(url){
+    document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
     console.log('Page = ReaderDemo');
     var lol = await tabActiveToggle(page4);
     document.getElementById('pagination').style.cssText = 'opacity : 0%;';
