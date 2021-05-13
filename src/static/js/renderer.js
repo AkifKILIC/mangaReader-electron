@@ -22,7 +22,8 @@ async function toggleModal(input){
     await $.cachedScript('static/js/mangapage.js').done(function(script,textStatus) {
         console.log( "Status  :  " + textStatus);
     });
-    modalEnable(input);
+    
+    await modalEnable(input);
     console.log(input);
 }
 window.onbeforeunload = (event) => {

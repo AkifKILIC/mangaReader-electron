@@ -15,7 +15,7 @@ function pageStructure(tab,page) {  // TODO: Make it look Nice
             var inner1 = readTextFile("mangakakalot.html");
             var inner2 = inner1.replace('taytil',row.name);
             var inner3 = inner2.replace('image',row.image);
-            var hrefF = "modalEnable('" + row.href + "')";
+            var hrefF = "toggleModal('" + row.href + "')";
             var inner4 = inner3.replace( /haref/g ,hrefF);
             var inner5 = inner4.replace( /content/g ,row.content);
             if(row.updated == 1){
@@ -56,7 +56,6 @@ function pageStructure(tab,page) {  // TODO: Make it look Nice
         tabActiveToggle(page4);
     }
 }
-
 async function chapterToReader(url){
     document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
     console.log('Page = ReaderDemo');
@@ -64,7 +63,6 @@ async function chapterToReader(url){
     document.getElementById('pagination').style.cssText = 'opacity : 0%;';
     loadChapter(url);
 }
-
 function pageChange(current){
     if(current == 'first'){
         if(min != currentPage){
