@@ -35,19 +35,13 @@ function pageStructure(tab,page) {  // TODO: Make it look Nice
             pageOrder();
     }
     if(tab == 'mangaoku'){
-        
-        document.getElementById("content").innerHTML = readTextFile("mangaoku.html");
-        console.log('Page = MangaOku');
-        document.getElementById("content").getAttribute("style").value = "";
-        tabActiveToggle(page2);
+        // TODO : MANGAOKU SCRAPPER
     }
     if(tab == 'manytoon'){
-        document.getElementById("content").innerHTML = readTextFile("manytoon.html");
-        console.log('Page = ManyToon');
-        tabActiveToggle(page3);
+        // TODO : MANYTOON SCRAPPER
     }
     if(tab == 'readerdemo'){
-             
+        
         if(pageContent.classList.contains('MangaorReader')){
             pageContent.classList.remove('MangaorReader');
         }
@@ -57,10 +51,14 @@ function pageStructure(tab,page) {  // TODO: Make it look Nice
     }
 }
 async function chapterToReader(url){
+    await modalEnable('close');
     document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
     console.log('Page = ReaderDemo');
     var lol = await tabActiveToggle(page4);
     document.getElementById('pagination').style.cssText = 'opacity : 0%;';
+    await $.cachedScript('static/js/reader.js').done(function(script,textStatus) {
+        console.log( "Status for Reader.js = " + textStatus);
+    });
     loadChapter(url);
 }
 function pageChange(current){

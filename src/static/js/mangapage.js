@@ -16,14 +16,15 @@ async function modalEnable(input){
         el3.innerHTML = responseText;
         sec.innerHTML = el3.getElementsByClassName('row-content-chapter')[0].innerHTML;
         var chapters = sec.getElementsByClassName('a-h');
+        var element2 = '';
         for(var i = 0;i < chapters.length;i++){
-            //el2.getElementsByClassName("list-group")[0].outerHTML += chapters[i].innerHTML;
-            var element = '<a class="list-group-item d-flex justify-content-between align-items-center w-100" onclick="tiklama">chep<span class="badge bg-primary rounded-pill">zaman</span></a>';
-            var element1 = element.replace('chep',chapters[i].getElementsByClassName('chapter-name')[0].innerHTML);
-            var element2 = element1.replace('tiklama',"chapterToReader('"+ chapters[i].getElementsByClassName('chapter-name')[0].getAttribute('href') +"')");
-            var element3 = element2.replace('zaman',chapters[i].getElementsByClassName('chapter-time')[0].innerHTML);
-            el2.getElementsByClassName("list-group")[0].innerHTML += element3;
-        }            
+            var element = '<a class="list-group-item d-flex justify-content-between align-items-center w-100" onclick="'+ "chapterToReader('"+ chapters[i].getElementsByClassName('chapter-name')[0].getAttribute('href') +"')" +
+            '">'+ chapters[i].getElementsByClassName('chapter-name')[0].innerHTML +
+            '<span class="badge bg-primary rounded-pill">'+ chapters[i].getElementsByClassName('chapter-time')[0].innerHTML +
+            '</span></a>';
+            element2 += element;
+        }         
+        el2.getElementsByClassName("list-group")[0].innerHTML = element2;
         console.log(chapters[0]);
         document.getElementById('content').innerHTML+= el2.innerHTML;
         myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
