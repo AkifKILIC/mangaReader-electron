@@ -77,7 +77,9 @@ var bottomRight = document.getElementById('bottomRight');
 var pageinationSEC = '<div class="row w-100" style="height: 1px;justify-content: center;"><ul class="pagination " id="pagination" style="opacity: 0%;height: 1px;">  <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange('+"'first'"+')"><span aria-hidden="true">&laquo;</span></a></li><li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange('+"'minusx'"+')">1</a></li><li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange('+"'x'"+')">2</a></li><li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange('+"'plusx'"+')">3</a></li><li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange('+"'last'"+')"><span aria-hidden="true">&raquo;</span></a></li><input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;"></ul></div>'
 async function page(tab) { //*** For Tabs to Work for Content Change ***
     if(tab == 'mangakakalot'){
-        bottomRight.innerHTML = bottomRight.innerHTML + pageinationSEC;
+        if(!bottomRight.innerHTML.match('pagination')){
+            bottomRight.innerHTML = bottomRight.innerHTML + pageinationSEC;
+        }
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
         document.getElementById('scrollbarRow').style.height = 'calc(100% - 45px)';
         await $.cachedScript('static/js/mangakakalot.js').done(function(script,textStatus) {
