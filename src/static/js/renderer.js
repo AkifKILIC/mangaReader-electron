@@ -18,12 +18,11 @@ var el3;
 var el2;
 var sec;
 
-async function toggleModal(input){
+async function toggleModal(url,input){
     await $.cachedScript('static/js/mangapage.js').done(function(script,textStatus) {
         console.log( "Status  :  " + textStatus);
     });
-    
-    await modalEnable(input);
+    await modalEnable(url,input);
     console.log(input);
 }
 window.onbeforeunload = (event) => {

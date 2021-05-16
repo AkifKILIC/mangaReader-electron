@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -8,158 +9,136 @@
     <link rel="stylesheet" href="static/css/mangaPage.css">
     <title>Hello, world!</title>
     <script src="https://kit.fontawesome.com/9c91f74a1a.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="container-fluid bg-dark vh-100 ">
-      <div class="row" style="height: 145px;">
-        <div class="col-xs"  style="height: 145px;max-width: fit-content;padding: 0px;background-image: url('static/img/copy.jpg');">
-          <div class="col-xs bg1" id="sol1" style="width: 95px;height: fit-content;">
-            <img class="img-fluid" src="static/img/MangaReader.png" style="max-height: 145px;display: block;margin-left: auto;margin-right: auto;"/>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row row-cols-1">
-            <div class="col bg5" style="height: 32px;">
-              <div class="row" style="height: 32px;">
-                <div class="col" style="-webkit-app-region: drag"></div>
-                <div class="col-xs" style="width: 114px;">
-                  <div id="window-controls" style="height: 32px;width: 114px;">
-                    <div class="buttone" id="min-button">
-                      <img class="icon" srcset="static/icons/min-w-10.png 1x, static/icons/min-w-12.png 1.25x, static/icons/min-w-15.png 1.5x, static/icons/min-w-15.png 1.75x, static/icons/min-w-20.png 2x, static/icons/min-w-20.png 2.25x, static/icons/min-w-24.png 2.5x, static/icons/min-w-30.png 3x, static/icons/min-w-30.png 3.5x" draggable="false" />
-                    </div>
-              
-                    <div class="buttone" id="max-button">
-                      <img class="icon" srcset="static/icons/max-w-10.png 1x, static/icons/max-w-12.png 1.25x, static/icons/max-w-15.png 1.5x, static/icons/max-w-15.png 1.75x, static/icons/max-w-20.png 2x, static/icons/max-w-20.png 2.25x, static/icons/max-w-24.png 2.5x, static/icons/max-w-30.png 3x, static/icons/max-w-30.png 3.5x" draggable="false" />
-                    </div>
-              
-                    <div class="buttone" id="restore-button">
-                      <img class="icon" srcset="static/icons/restore-w-10.png 1x, static/icons/restore-w-12.png 1.25x, static/icons/restore-w-15.png 1.5x, static/icons/restore-w-15.png 1.75x, static/icons/restore-w-20.png 2x, static/icons/restore-w-20.png 2.25x, static/icons/restore-w-24.png 2.5x, static/icons/restore-w-30.png 3x, static/icons/restore-w-30.png 3.5x" draggable="false" />
-                    </div>
-              
-                    <div class="buttone" id="close-button">
-                      <img class="icon" srcset="static/icons/close-w-10.png 1x, static/icons/close-w-12.png 1.25x, static/icons/close-w-15.png 1.5x, static/icons/close-w-15.png 1.75x, static/icons/close-w-20.png 2x, static/icons/close-w-20.png 2.25x, static/icons/close-w-24.png 2.5x, static/icons/close-w-30.png 3x, static/icons/close-w-30.png 3.5x" draggable="false" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col bg3" style="height: 81px;">
-            </div>
-            <div class="col bg5 nomar nopad" style="height: 32px;">
-              <div class="row w-100 nomar nopad" style="height: 32px;">
-                <div class="row w-100 nomar hor justify-content-between">
-                  <div class="list-group list-group-horizontal">
-                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" onclick="data()">Favorites</a>
-                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem">Recent</a>
-                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" onclick="update()">Last Updated!</a>
-                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> Categories</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <div class="row nomar">
-                        <div class="col nopad">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Adult</a></li>
-                          <li><a class="dropdown-item" href="#">Adventure</a></li>
-                          <li><a class="dropdown-item" href="#">Comedy</a></li>
-                          <li><a class="dropdown-item" href="#">Cooking</a></li>
-                          <li><a class="dropdown-item" href="#">Doujinshi</a></li>
-                          <li><a class="dropdown-item" href="#">Drama</a></li>
-                          <li><a class="dropdown-item" href="#">Ecchi</a></li>
-                          <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                          <li><a class="dropdown-item" href="#">Gender bender</a></li>
-                          <li><a class="dropdown-item" href="#">Harem</a></li>
-                          <li><a class="dropdown-item" href="#">Historical</a></li>
-                          <li><a class="dropdown-item" href="#">Horror</a></li>
-                        </div>
-                        <div class="col nopad">
-                          <li><a class="dropdown-item" href="#">Isekai</a></li>
-                          <li><a class="dropdown-item" href="#">Josei</a></li>
-                          <li><a class="dropdown-item" href="#">Manhua</a></li>
-                          <li><a class="dropdown-item" href="#">Manhwa</a></li>
-                          <li><a class="dropdown-item" href="#">Martial arts</a></li>
-                          <li><a class="dropdown-item" href="#">Mature</a></li>
-                          <li><a class="dropdown-item" href="#">Mecha</a></li>
-                          <li><a class="dropdown-item" href="#">Medical</a></li>
-                          <li><a class="dropdown-item" href="#">Mystery</a></li>
-                          <li><a class="dropdown-item" href="#">One shot</a></li>
-                          <li><a class="dropdown-item" href="#">Psychological</a></li>
-                          <li><a class="dropdown-item" href="#">Romance</a></li>
-                          <li><a class="dropdown-item" href="#">School life</a></li>
-                        </div>
-                        <div class="col nopad">
-                          <li><a class="dropdown-item" href="#">Sci fi</a></li>
-                          <li><a class="dropdown-item" href="#">Seinen</a></li>
-                          <li><a class="dropdown-item" href="#">Shoujo</a></li>
-                          <li><a class="dropdown-item" href="#">Shounen</a></li>
-                          <li><a class="dropdown-item" href="#">Slice of life</a></li>
-                          <li><a class="dropdown-item" href="#">Smut</a></li>
-                          <li><a class="dropdown-item" href="#">Sports</a></li>
-                          <li><a class="dropdown-item" href="#">Supernatural</a></li>
-                          <li><a class="dropdown-item" href="#">Tragedy</a></li>
-                          <li><a class="dropdown-item" href="#">Webtoons</a></li>
-                        </div>
-                      </div>
-                    </ul>
-                  </div>
-                  <div class="col-xs nopad ml-auto" style="width: 175px;height: 32px;">
-                    <div class="input-group-sm d-flex">
-                      <input type="text" class="form-control" placeholder="Search">
-                      <button class="btn btn-secondary btn-block" type="button"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row" style="height: calc(100% - 145px);">
-        <div class="col-xs" id="sol2"  style="width: 95px;padding: 0px;">
-          <button type="button" data-bs-toggle="button" class="btn btn-outline-secondary btn-block" id="leftBarButton" onclick="leftBarState()" style="margin: 3px;margin-left: 20px;"><i id="buttonicon" class="fas fa-bars fa-2x"></i></button>
-          <div class="list-group list-group-dark" id="verticalMenu" style="opacity: 0%;">
-          <a id="p1" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('mangakakalot')">MangaKakalot<span class="badge bg-primary rounded-pill">14</span></a>
-          <a id="p2" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('mangaoku')">MangaOku <span class="badge bg-primary rounded-pill">14</span></a>
-          <a id="p3" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('manytoon')">ManyToon <span class="badge bg-primary rounded-pill">14</span></a>
-          <a id="p4" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('readerdemo')">ReaderDemo <span class="badge bg-primary rounded-pill">14</span></a>
-        </div>
-        </div>
-        <div class="col bg4 nomar nopad" style="max-height: 100%;max-width: 100%;" id="bottomRight">
-          <div class="row nomar" id="scrollbarRow" style="height: 100%;width: 100%;overflow: scroll;">
-            <div class="row row h-100 w-100 nomar nopad" id="content">
-              
+</head>
 
-              <div class="col-xs w-25 d-block" style="background-image: linear-gradient(90deg, transparent, #222226);">
-                <img class="img-thumbnail d-block" src="https://avt.mkklcdnv6temp.com/19/v/1-1583464475.jpg" style="margin-left: auto;background-color: #222226;border-color: black;">
-                <p class="text-end fs-6">Genres :	Action - Adventure - Comedy - Drama - Fantasy - Harem - Romance - Shounen - Manhua</p>
-              </div>
-              <div class="col nopad bg">
-                <div class="row-xs nomar nopad d-flex" style="background-color: #222226;height: 250px;flex-direction:column">
-                    <p class="text-primary w-100 fs-1 mb-0">Tales of Demons and Gods</p>
-                    <p class="text-danger w-100 fs-5 mb-0">Author(s) : Mad Snail</p>
-                    <p class="text-warning w-100 fs-6 mb-0" style="margin-top:auto;">Description :</p>
-                    <p class="text-wrap d-block w-100 fs-6 mb-0" >Nie Li, one of the strongest Demon Spiritist in his past life standing at the pinnacle of the martial world , however he lost his life during the battle with Sage Emperor and the six deity ranked beast, his soul was then reborn back in time back to when he is still 13. Although he’s the weakest in his class with the lowest talent at only Red soul realm, with the aid of the vast knowledge which he accumulated in his previous life, he trained faster then anyone. Trying to protect the city which in the coming future was being assaulted by beast and ended up being destroyed as well as protecting his lover, friends and family who died by the beast assault. and to destroy the Sacred family whom abandon their duty and betrayed the city in his past life.</p>
+<body>
+    <div class="container-fluid bg-dark vh-100 ">
+        <div class="row" style="height: 145px;">
+            <div class="col-xs" style="height: 145px;max-width: fit-content;padding: 0px;background-image: url('static/img/copy.jpg');">
+                <div class="col-xs bg1" id="sol1" style="width: 95px;height: fit-content;">
+                    <img class="img-fluid" src="static/img/MangaReader.png" style="max-height: 145px;display: block;margin-left: auto;margin-right: auto;" />
                 </div>
-                <div class="row  nomar nopad" style="background-image: linear-gradient(180deg, #222226, transparent);height: calc(100% - 250px);">
-                  <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-                      The current button
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action">A second item</button>
-                    <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-                    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-                    <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="btn btn-primary" alt="https://manganelo.com/manga/hyer5231574354229" id="manga1" onclick="toggleModal('manga1')">
-              Launch demo modal
-              </button>
             </div>
-          </div>
+            <div class="col">
+                <div class="row row-cols-1">
+                    <div class="col bg5" style="height: 32px;">
+                        <div class="row" style="height: 32px;">
+                            <div class="col" style="-webkit-app-region: drag"></div>
+                            <div class="col-xs" style="width: 114px;">
+                                <div id="window-controls" style="height: 32px;width: 114px;">
+                                    <div class="buttone" id="min-button">
+                                        <img class="icon" srcset="static/icons/min-w-10.png 1x, static/icons/min-w-12.png 1.25x, static/icons/min-w-15.png 1.5x, static/icons/min-w-15.png 1.75x, static/icons/min-w-20.png 2x, static/icons/min-w-20.png 2.25x, static/icons/min-w-24.png 2.5x, static/icons/min-w-30.png 3x, static/icons/min-w-30.png 3.5x"
+                                            draggable="false" />
+                                    </div>
+
+                                    <div class="buttone" id="max-button">
+                                        <img class="icon" srcset="static/icons/max-w-10.png 1x, static/icons/max-w-12.png 1.25x, static/icons/max-w-15.png 1.5x, static/icons/max-w-15.png 1.75x, static/icons/max-w-20.png 2x, static/icons/max-w-20.png 2.25x, static/icons/max-w-24.png 2.5x, static/icons/max-w-30.png 3x, static/icons/max-w-30.png 3.5x"
+                                            draggable="false" />
+                                    </div>
+
+                                    <div class="buttone" id="restore-button">
+                                        <img class="icon" srcset="static/icons/restore-w-10.png 1x, static/icons/restore-w-12.png 1.25x, static/icons/restore-w-15.png 1.5x, static/icons/restore-w-15.png 1.75x, static/icons/restore-w-20.png 2x, static/icons/restore-w-20.png 2.25x, static/icons/restore-w-24.png 2.5x, static/icons/restore-w-30.png 3x, static/icons/restore-w-30.png 3.5x"
+                                            draggable="false" />
+                                    </div>
+
+                                    <div class="buttone" id="close-button">
+                                        <img class="icon" srcset="static/icons/close-w-10.png 1x, static/icons/close-w-12.png 1.25x, static/icons/close-w-15.png 1.5x, static/icons/close-w-15.png 1.75x, static/icons/close-w-20.png 2x, static/icons/close-w-20.png 2.25x, static/icons/close-w-24.png 2.5x, static/icons/close-w-30.png 3x, static/icons/close-w-30.png 3.5x"
+                                            draggable="false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col bg3" style="height: 81px;">
+                    </div>
+                    <div class="col bg5 nomar nopad" style="height: 32px;">
+                        <div class="row w-100 nomar nopad" style="height: 32px;">
+                            <div class="row w-100 nomar hor justify-content-between">
+                                <div class="list-group list-group-horizontal">
+                                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" onclick="data()">Favorites</a>
+                                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem">Recent</a>
+                                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" onclick="update()">Last Updated!</a>
+                                    <a class="list-group-item list-group-item-action d-flex align-items-center horMenuItem" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> Categories</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <div class="row nomar">
+                                            <div class="col nopad">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Adult</a></li>
+                                                <li><a class="dropdown-item" href="#">Adventure</a></li>
+                                                <li><a class="dropdown-item" href="#">Comedy</a></li>
+                                                <li><a class="dropdown-item" href="#">Cooking</a></li>
+                                                <li><a class="dropdown-item" href="#">Doujinshi</a></li>
+                                                <li><a class="dropdown-item" href="#">Drama</a></li>
+                                                <li><a class="dropdown-item" href="#">Ecchi</a></li>
+                                                <li><a class="dropdown-item" href="#">Fantasy</a></li>
+                                                <li><a class="dropdown-item" href="#">Gender bender</a></li>
+                                                <li><a class="dropdown-item" href="#">Harem</a></li>
+                                                <li><a class="dropdown-item" href="#">Historical</a></li>
+                                                <li><a class="dropdown-item" href="#">Horror</a></li>
+                                            </div>
+                                            <div class="col nopad">
+                                                <li><a class="dropdown-item" href="#">Isekai</a></li>
+                                                <li><a class="dropdown-item" href="#">Josei</a></li>
+                                                <li><a class="dropdown-item" href="#">Manhua</a></li>
+                                                <li><a class="dropdown-item" href="#">Manhwa</a></li>
+                                                <li><a class="dropdown-item" href="#">Martial arts</a></li>
+                                                <li><a class="dropdown-item" href="#">Mature</a></li>
+                                                <li><a class="dropdown-item" href="#">Mecha</a></li>
+                                                <li><a class="dropdown-item" href="#">Medical</a></li>
+                                                <li><a class="dropdown-item" href="#">Mystery</a></li>
+                                                <li><a class="dropdown-item" href="#">One shot</a></li>
+                                                <li><a class="dropdown-item" href="#">Psychological</a></li>
+                                                <li><a class="dropdown-item" href="#">Romance</a></li>
+                                                <li><a class="dropdown-item" href="#">School life</a></li>
+                                            </div>
+                                            <div class="col nopad">
+                                                <li><a class="dropdown-item" href="#">Sci fi</a></li>
+                                                <li><a class="dropdown-item" href="#">Seinen</a></li>
+                                                <li><a class="dropdown-item" href="#">Shoujo</a></li>
+                                                <li><a class="dropdown-item" href="#">Shounen</a></li>
+                                                <li><a class="dropdown-item" href="#">Slice of life</a></li>
+                                                <li><a class="dropdown-item" href="#">Smut</a></li>
+                                                <li><a class="dropdown-item" href="#">Sports</a></li>
+                                                <li><a class="dropdown-item" href="#">Supernatural</a></li>
+                                                <li><a class="dropdown-item" href="#">Tragedy</a></li>
+                                                <li><a class="dropdown-item" href="#">Webtoons</a></li>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="col-xs nopad ml-auto" style="width: 175px;height: 32px;">
+                                    <div class="input-group-sm d-flex">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <button class="btn btn-secondary btn-block" type="button"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row" style="height: calc(100% - 145px);">
+            <div class="col-xs" id="sol2" style="width: 95px;padding: 0px;">
+                <button type="button" data-bs-toggle="button" class="btn btn-outline-secondary btn-block" id="leftBarButton" onclick="leftBarState()" style="margin: 3px;margin-left: 20px;"><i id="buttonicon" class="fas fa-bars fa-2x"></i></button>
+                <div class="list-group list-group-dark" id="verticalMenu" style="opacity: 0%;">
+                    <a id="p1" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('mangakakalot')">MangaKakalot<span class="badge bg-primary rounded-pill">14</span></a>
+                    <a id="p2" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('mangaoku')">MangaOku <span class="badge bg-primary rounded-pill">14</span></a>
+                    <a id="p3" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('manytoon')">ManyToon <span class="badge bg-primary rounded-pill">14</span></a>
+                    <a id="p4" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('readerdemo')">ReaderDemo <span class="badge bg-primary rounded-pill">14</span></a>
+                </div>
+            </div>
+            <div class="col bg4 nomar nopad" style="max-height: 100%;max-width: 100%;" id="bottomRight">
+                <div class="row nomar" id="scrollbarRow" style="height: 100%;width: 100%;overflow: scroll;">
+                    <div class="row row h-100 w-100 nomar nopad" id="content">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
     </div>
     <script src="static/js/bootstrap.bundle.js"></script>
     <script src="static/js/renderer.js"></script>
-  </body>
+</body>
+
 </html>
