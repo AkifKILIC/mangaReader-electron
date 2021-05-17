@@ -2,7 +2,7 @@ const remote = require('electron').remote;
 const db = require('better-sqlite3')('src/static/db/db.db');
 window.$ = window.jQuery = require('jquery');
 const win = remote.getCurrentWindow();
- /* Note this is different to the
+/* Note this is different to the
 html global `window` variable */
 
 // When document has loaded, initialise
@@ -14,15 +14,12 @@ document.onreadystatechange = (event) => {
 
 var myModal;
 var url;
-var el3;
-var el2;
-var sec;
 
-async function toggleModal(url,input){
-    await $.cachedScript('static/js/mangapage.js').done(function(script,textStatus) {
-        console.log( "Status  :  " + textStatus);
+async function toggleModal(url, input) {
+    await $.cachedScript('static/js/mangapage.js').done(function(script, textStatus) {
+        console.log("Status  :  " + textStatus);
     });
-    await modalEnable(url,input);
+    await modalEnable(url, input);
     console.log(input);
 }
 window.onbeforeunload = (event) => {
@@ -31,6 +28,7 @@ window.onbeforeunload = (event) => {
     Electron win listeners as the win is not dereferenced unless closed) */
     win.removeAllListeners();
 }
+
 function handleWindowControls() {
     // Make minimise/maximise/restore/close buttons work when they are clicked
     document.getElementById('min-button').addEventListener("click", event => {
@@ -73,34 +71,34 @@ const page2 = document.getElementById('p2');
 const page3 = document.getElementById('p3');
 const page4 = document.getElementById('p4');
 var bottomRight = document.getElementById('bottomRight');
-var pageinationSEC = '<div class="row w-100" style="height: 1px;justify-content: center;"><ul class="pagination " id="pagination" style="opacity: 0%;height: 1px;">  <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange('+"'first'"+')"><span aria-hidden="true">&laquo;</span></a></li><li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange('+"'minusx'"+')">1</a></li><li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange('+"'x'"+')">2</a></li><li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange('+"'plusx'"+')">3</a></li><li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange('+"'last'"+')"><span aria-hidden="true">&raquo;</span></a></li><input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;"></ul></div>'
+var pageinationSEC = '<div class="row w-100" style="height: 1px;justify-content: center;"><ul class="pagination " id="pagination" style="opacity: 0%;height: 1px;">  <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange(' + "'first'" + ')"><span aria-hidden="true">&laquo;</span></a></li><li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange(' + "'minusx'" + ')">1</a></li><li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange(' + "'x'" + ')">2</a></li><li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange(' + "'plusx'" + ')">3</a></li><li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange(' + "'last'" + ')"><span aria-hidden="true">&raquo;</span></a></li><input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;"></ul></div>'
 async function page(tab) { //*** For Tabs to Work for Content Change ***
-    if(tab == 'mangakakalot'){
-        if(!bottomRight.innerHTML.match('pagination')){
+    if (tab == 'mangakakalot') {
+        if (!bottomRight.innerHTML.match('pagination')) {
             bottomRight.innerHTML = bottomRight.innerHTML + pageinationSEC;
         }
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
         document.getElementById('scrollbarRow').style.height = 'calc(100% - 45px)';
-        await $.cachedScript('static/js/mangakakalot.js').done(function(script,textStatus) {
+        await $.cachedScript('static/js/mangakakalot.js').done(function(script, textStatus) {
             console.log(textStatus);
         });
-        pageStructure('mangakakalot',currentPage);
+        pageStructure('mangakakalot', currentPage);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
     }
-    if(tab == 'mangaoku'){
+    if (tab == 'mangaoku') {
         document.getElementById("content").innerHTML = readTextFile("mangaoku.html");
         console.log('Page = MangaOku');
         tabActiveToggle(page2);
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
-    if(tab == 'manytoon'){
+    if (tab == 'manytoon') {
         document.getElementById("content").innerHTML = readTextFile("manytoon.html");
         console.log('Page = ManyToon');
         tabActiveToggle(page3);
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
     }
-    if(tab == 'readerdemo'){
+    if (tab == 'readerdemo') {
         document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
@@ -113,23 +111,25 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
 }
 var pagination = document.getElementsByClassName('page-item');
 
-function tabActiveToggle(b1){
-    if(page1.classList.contains('active')){page1.classList.remove('active');}
-    if(page2.classList.contains('active')){page2.classList.remove('active');}
-    if(page3.classList.contains('active')){page3.classList.remove('active');}
-    if(page4.classList.contains('active')){page4.classList.remove('active');}
+function tabActiveToggle(b1) {
+    if (page1.classList.contains('active')) { page1.classList.remove('active'); }
+    if (page2.classList.contains('active')) { page2.classList.remove('active'); }
+    if (page3.classList.contains('active')) { page3.classList.remove('active'); }
+    if (page4.classList.contains('active')) { page4.classList.remove('active'); }
     b1.classList.add('active');
 }
-function tabDisable(){
+
+function tabDisable() {
     page1.classList.toggle('disabled');
     page2.classList.toggle('disabled');
     page3.classList.toggle('disabled');
     page4.classList.toggle('disabled');
 }
+
 function leftBarState() {
     tabDisable();
-    if(state){
-        if(sol1.classList.contains('solTwo')){
+    if (state) {
+        if (sol1.classList.contains('solTwo')) {
             sol1.style.width = '95px';
             sol2.style.width = '95px';
             sol1.classList.remove('solTwo');
@@ -137,60 +137,57 @@ function leftBarState() {
         }
         sol1.classList.add('sol');
         sol2.classList.add('sol');
-    state = !state;
-        if(leftBarButton.classList.contains('deActives')){
+        state = !state;
+        if (leftBarButton.classList.contains('deActives')) {
             leftBarButton.classList.remove('deActives');
             leftBarButton.classList.add('actives');
 
-        }else{
+        } else {
             leftBarButton.classList.add('actives');
         }
-        if(verticalMenu.classList.contains('fadeout')){
+        if (verticalMenu.classList.contains('fadeout')) {
             verticalMenu.classList.remove('fadeout');
             verticalMenu.classList.add('fadein');
-        }else{
+        } else {
             verticalMenu.classList.add('fadein');
         }
 
         buttonIcon.classList.remove('fa-2x');
         buttonIcon.classList.add('fa-1x');
-    }else{
+    } else {
         sol1.style.width = '250px';
         sol2.style.width = '250px';
-        if(sol1.classList.contains('sol')){
+        if (sol1.classList.contains('sol')) {
             sol1.classList.remove('sol');
             sol2.classList.remove('sol');
         }
         sol1.classList.add('solTwo');
         sol2.classList.add('solTwo');
-        state = !state;    
-        if(leftBarButton.classList.contains('actives')){
+        state = !state;
+        if (leftBarButton.classList.contains('actives')) {
             leftBarButton.classList.remove('actives');
             leftBarButton.classList.add('deActives');
-        }else{
+        } else {
             leftBarButton.classList.add('deActives');
         }
         buttonIcon.classList.remove('fa-1x');
         buttonIcon.classList.add('fa-2x');
-        if(verticalMenu.classList.contains('fadein')){
+        if (verticalMenu.classList.contains('fadein')) {
             verticalMenu.classList.remove('fadein');
             verticalMenu.classList.add('fadeout');
-        }else{
+        } else {
             verticalMenu.classList.add('fadeout');
         }
     }
 }
-function readTextFile(file)
-{
+
+function readTextFile(file) {
     var allText;
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4) {
+            if (rawFile.status === 200 || rawFile.status == 0) {
                 allText = rawFile.responseText;
             }
         }
@@ -198,31 +195,32 @@ function readTextFile(file)
     rawFile.send(null);
     return allText;
 }
-jQuery.cachedScript = function( url, options) {
+jQuery.cachedScript = function(url, options) {
     // Allow user to set any option except for dataType, cache, and url
-    options = $.extend( options || {}, {
-      dataType: 'script',
-      cache: true,
-      url: url
+    options = $.extend(options || {}, {
+        dataType: 'script',
+        cache: true,
+        url: url
     });
     // Use $.ajax() since it is more flexible than $.getScript
     // Return the jqXHR object so we can chain callbacks
-    return jQuery.ajax( options );
-  };
-  async function getTextFromStream(readableStream) {
+    return jQuery.ajax(options);
+};
+async function getTextFromStream(readableStream) {
     let reader = readableStream.getReader();
     let utf8Decoder = new TextDecoder();
     let nextChunk;
-    
+
     let resultStr = '';
-    
+
     while (!(nextChunk = await reader.read()).done) {
         let partialData = nextChunk.value;
         resultStr += utf8Decoder.decode(partialData);
     }
-    
+
     return resultStr;
 }
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

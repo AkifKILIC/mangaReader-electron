@@ -9,9 +9,10 @@ async function modalEnable(url, input) {
             document.getElementById("myModal").outerHTML = "";
         }
         if (!document.getElementById("myModal")) {
-            el3 = document.createElement("html");
-            el2 = document.createElement("html");
-            sec = document.createElement("html");
+            var el3 = document.createElement("html");
+            var el2 = document.createElement("div");
+            var sec = document.createElement("html");
+            var taytil = 'lol';
             el2.innerHTML = readTextFile("mangapage.html");
             let response = await fetch(url, {
                 headers: {
@@ -21,9 +22,9 @@ async function modalEnable(url, input) {
             });
             let responseText = await getTextFromStream(response.body);
             el3.innerHTML = responseText;
-            sec.innerHTML = el3.getElementsByClassName(
-                "row-content-chapter"
-            )[0].innerHTML;
+            el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementByXpath('/html/body/div[1]/div[3]/div[1]/div[3]/div[2]/h1');
+            el2.getElementsByClassName('mangaDesc')[0].innerHTML = el3.getElemen('/html/body/div[1]/div[3]/div[1]/div[3]/div[3]/text()');
+            sec.innerHTML = el3.getElementsByClassName("row-content-chapter")[0].innerHTML;
             var chapters = sec.getElementsByClassName("a-h");
             var element2 = "";
             for (var i = 0; i < chapters.length; i++) {
