@@ -53,7 +53,7 @@ function pageStructure(tab, page) {
     }
 }
 async function chapterToReader(url) {
-    await modalEnable("close");
+    await modalEnable('', 'close');
     document.getElementById("content").innerHTML =
         readTextFile("readerdemo.html");
     console.log("Page = ReaderDemo");

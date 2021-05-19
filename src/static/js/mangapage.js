@@ -22,8 +22,13 @@ async function modalEnable(url, input) {
             });
             let responseText = await getTextFromStream(response.body);
             el3.innerHTML = responseText;
-            el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementByXpath('/html/body/div[1]/div[3]/div[1]/div[3]/div[2]/h1');
-            el2.getElementsByClassName('mangaDesc')[0].innerHTML = el3.getElemen('/html/body/div[1]/div[3]/div[1]/div[3]/div[3]/text()');
+            el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementsByClassName('story-info-right')[0].getElementsByTagName('h1')[0].innerHTML;
+            var mangaDesc = el3.getElementsByClassName('panel-story-info-description')[0].textContent;
+            el2.getElementsByClassName('mangaDesc')[0].innerHTML = mangaDesc.split('Description :', 2)[1];
+            console.log(mangaDesc.split('Description :', 2));
+            el2.getElementsByClassName('mangaImage')[0].src = el3.getElementsByClassName('info-image')[0].firstElementChild.getAttribute('src');
+            el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[3].lastElementChild.textContent;
+            el2.getElementsByClassName('mangaAuthor')[0].innerHTML += el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[1].lastElementChild.textContent;
             sec.innerHTML = el3.getElementsByClassName("row-content-chapter")[0].innerHTML;
             var chapters = sec.getElementsByClassName("a-h");
             var element2 = "";
@@ -52,6 +57,8 @@ async function modalEnable(url, input) {
     }
     if (input === "close") {
         myModal.toggle();
-        document.getElementById("myModal").outerHTML = "";
+        if (document.getElementById("myModal")) {
+            document.getElementById("myModal").outerHTML = "";
+        }
     }
 }
