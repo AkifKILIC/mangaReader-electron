@@ -62,3 +62,14 @@ async function modalEnable(url, input) {
         }
     }
 }
+
+function readFirstOrLast(input) {
+    if (input === 'First') {
+        var first = document.getElementById('paduc').firstElementChild.lastElementChild.getAttribute('onclick');
+        chapterToReader(first.split('(', )[1].replace("'", "").replace("')", ""))
+    }
+    if (input === 'Last') {
+        var last = document.getElementById('paduc').firstElementChild.firstElementChild.getAttribute('onclick');
+        chapterToReader(last.split('(', )[1].replace("'", "").replace("')", ""))
+    }
+}
