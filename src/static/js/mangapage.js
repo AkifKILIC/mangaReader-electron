@@ -25,7 +25,6 @@ async function modalEnable(url, input) {
             el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementsByClassName('story-info-right')[0].getElementsByTagName('h1')[0].innerHTML;
             var mangaDesc = el3.getElementsByClassName('panel-story-info-description')[0].textContent;
             el2.getElementsByClassName('mangaDesc')[0].innerHTML = mangaDesc.split('Description :', 2)[1];
-            console.log(mangaDesc.split('Description :', 2));
             el2.getElementsByClassName('mangaImage')[0].src = el3.getElementsByClassName('info-image')[0].firstElementChild.getAttribute('src');
             el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[3].lastElementChild.textContent;
             el2.getElementsByClassName('mangaAuthor')[0].innerHTML += el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[1].lastElementChild.textContent;
@@ -48,7 +47,6 @@ async function modalEnable(url, input) {
                 element2 += element;
             }
             el2.getElementsByClassName("list-group")[0].innerHTML = element2;
-            console.log(chapters[0]);
             document.getElementById("content").innerHTML += el2.innerHTML;
             myModal = new bootstrap.Modal(document.getElementById("myModal"), {});
             myModal.toggle();

@@ -20,7 +20,6 @@ async function toggleModal(url, input) {
         console.log("Status  :  " + textStatus);
     });
     await modalEnable(url, input);
-    console.log(input);
 }
 window.onbeforeunload = (event) => {
     /* If window is reloaded, remove win event listeners
