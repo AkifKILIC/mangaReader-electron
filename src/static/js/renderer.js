@@ -150,7 +150,6 @@ function leftBarState() {
         } else {
             verticalMenu.classList.add('fadein');
         }
-
         buttonIcon.classList.remove('fa-2x');
         buttonIcon.classList.add('fa-1x');
     } else {

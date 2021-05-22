@@ -50,6 +50,7 @@
                         </div>
                     </div>
                     <div class="col bg3" style="height: 81px;">
+                        <div class=""></div>
                     </div>
                     <div class="col bg5 nomar nopad" style="height: 32px;">
                         <div class="row w-100 nomar nopad" style="height: 32px;">
@@ -119,13 +120,17 @@
             </div>
         </div>
         <div class="row" style="height: calc(100% - 145px);">
-            <div class="col-xs" id="sol2" style="width: 95px;padding: 0px;">
-                <button type="button" data-bs-toggle="button" class="btn btn-outline-secondary btn-block" id="leftBarButton" onclick="leftBarState()" style="margin: 3px;margin-left: 20px;"><i id="buttonicon" class="fas fa-bars fa-2x"></i></button>
+            <div class="col-xs d-flex" id="sol2" style="width: 95px;padding: 0px;flex-direction: column;">
+                <button type="button" data-bs-toggle="button" class="btn btn-outline-secondary btn-block" id="leftBarButton" onclick="leftBarState()" style="margin: 20px;"><i id="buttonicon" class="fas fa-bars fa-2x"></i></button>
                 <div class="list-group list-group-dark" id="verticalMenu" style="opacity: 0%;">
                     <a id="p1" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('mangakakalot')">MangaKakalot<span class="badge bg-primary rounded-pill">14</span></a>
                     <a id="p2" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('mangaoku')">MangaOku <span class="badge bg-primary rounded-pill">14</span></a>
                     <a id="p3" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('manytoon')">ManyToon <span class="badge bg-primary rounded-pill">14</span></a>
                     <a id="p4" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center w-100 disabled" onclick="page('readerdemo')">ReaderDemo <span class="badge bg-primary rounded-pill">14</span></a>
+                </div>
+                <div class="leftMenuFooter mt-auto">
+                    <div class="line"></div>
+                    <div class="settings"><i class="fas fa-cog fa-2x"></i></div>
                 </div>
             </div>
             <div class="col bg4 nomar nopad" style="max-height: 100%;max-width: 100%;" id="bottomRight">
