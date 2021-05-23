@@ -412,10 +412,14 @@ body {
 }
 
 .settings {
-    margin: 20px;
+    margin: 31px;
 }
 
 .settings .fa-cog:before {
     background: radial-gradient(#141414, transparent);
-    box-shadow: 0px 0px 5px 5px rgb(0, 0, 0 / 20%);
+    color: #5C5C66;
+}
+
+.settingsHover .fa-cog:before {
+    color: white;
 }

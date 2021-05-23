@@ -218,6 +218,16 @@ async function getTextFromStream(readableStream) {
 
     return resultStr;
 }
+var settingsButton = document.getElementsByClassName('settings')[0]
+var settingsButtonFirstChild = document.getElementById('settingsCog')
+settingsButtonFirstChild.addEventListener('mouseover', function() {
+    settingsButton.classList.add('settingsHover');
+    console.log('hovered');
+});
+settingsButtonFirstChild.addEventListener('mouseout', function() {
+    settingsButton.classList.remove('settingsHover');
+    console.log('out');
+});
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
