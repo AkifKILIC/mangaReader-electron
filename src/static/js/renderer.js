@@ -107,6 +107,9 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         //};
         document.getElementById('pagination').style.cssText = 'opacity : 0%;';
     }
+    if (tab == 'settings') {
+        document.getElementById("content").innerHTML = readTextFile("settings.html");
+    }
 }
 var pagination = document.getElementsByClassName('page-item');
 
@@ -227,6 +230,10 @@ settingsButtonFirstChild.addEventListener('mouseover', function() {
 settingsButtonFirstChild.addEventListener('mouseout', function() {
     settingsButton.classList.remove('settingsHover');
     console.log('out');
+});
+settingsButtonFirstChild.addEventListener('click', function() {
+    page('settings');
+    console.log('click');
 });
 
 function sleep(ms) {
