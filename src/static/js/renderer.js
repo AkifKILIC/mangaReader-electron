@@ -109,6 +109,7 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
     }
     if (tab == 'settings') {
         document.getElementById("content").innerHTML = readTextFile("settings.html");
+        settingPageLoad();
     }
 }
 var pagination = document.getElementsByClassName('page-item');

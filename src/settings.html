@@ -2,30 +2,35 @@
     <h1>Settings</h1>
     <hr/>
     <label for="basic-url" class="form-label">StartUp</label>
-
+    <div class="input-group mb-3">
+        <span class="input-group-text">Manga Database Reflesh Countout</span>
+        <input type="text" class="form-control" id="startUpFirst" placeholder="">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Manga Database Reflesh Timeout</span>
+        <input type="text" class="form-control" id="startUpSecond" placeholder="">
+    </div>
     <hr/>
     <label for="basic-url" class="form-label">Theme</label>
     <div class="input-group mb-3">
         <span class="input-group-text">Color Theme</span>
-        <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="form-select" id="themeFirst">
+            <option value="1">Default</option>
+            <option value="2">One</option>
         </select>
     </div>
     <hr/>
     <label for="basic-url" class="form-label">Reader</label>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Reader Chose</span>
-        <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+        <select class="form-select" id="readerFirst">
             <option selected>Webtoon</option>
             <option value="1">Manga</option>
         </select>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Reading Direction</span>
-        <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+        <select class="form-select" id="readerSecond">
             <option selected>Vertical</option>
             <option value="1">Horizontal</option>
         </select>
