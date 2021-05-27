@@ -37,12 +37,27 @@
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Automatic ScrollDown Keybind</span>
-        <button class="btn btn-outline-primary" type="button" style="flex:1 1 auto;">"Down Arrow Key"</button>
+        <button class="btn btn-outline-primary" type="button" id="scrollKeydown" onclick="keyBind('scrollKeydown')" style="flex:1 1 auto;">"Down Arrow Key"</button>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Automatic ScrollDown Speed</span>
         <input type="text" class="form-control" placeholder="Speed">
     </div>
     <hr/>
+    <div class="input-group mb-3">
+        <button class="btn btn-primary" type="button" onclick="saveButton()">Save</button>
+    </div>
     <label for="basic-url" class="form-label">Demo</label>
+</div>
+<div class="position-fixed bottom-0 start-0 p-3" style="z-index: 5">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" style="margin-left:auto;">
+        <div class="toast-header">
+            <i class="fas fa-cog fa-1x"></i>
+            <strong class="me-auto" style="margin-left: 3px;">  Settings</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-dark">
+            Options are saved.
+        </div>
+    </div>
 </div>
