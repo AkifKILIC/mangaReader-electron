@@ -7,6 +7,48 @@ var readerAllImagesInOnePage = "Vertical";
 var readerScrolDownSpeed = "5";
 var readerAutomaticScrollKeybind = "Down Arrow Key";
 
+var options = [
+    colortheme,
+    mangaDatabaseRefleshTimeout,
+    mangaDatabaseRefleshCount,
+    readerWebtoonOrNot,
+    readerAllImagesInOnePage,
+    readerScrolDownSpeed,
+    readerAutomaticScrollKeybind,
+];
+var optionsText = [
+    "colortheme",
+    "mangaDatabaseRefleshTimeout",
+    "mangaDatabaseRefleshCount",
+    "readerWebtoonOrNot",
+    "readerAllImagesInOnePage",
+    "readerScrolDownSpeed",
+    "readerAutomaticScrollKeybind",
+];
+databaseUpdate();
+
+function databaseUpdate() {
+    for (var i = 0; i < options.length; i++) {
+        //console.log(optionsText[i] + ' = ' + options[i])
+        const row = db
+            .prepare("SELECT EXISTS(SELECT * FROM Options WHERE Option = ?)")
+            .get(optionsText[i]);
+        if (row['EXISTS(SELECT * FROM Options WHERE Option = ?)'] == 0) {
+            const insert = db.prepare('INSERT INTO Options (Option,Value) VALUES (?, ?)');
+            const info = insert.run(optionsText[i], options[i]);
+            console.log("Variable couldn't found in database so adding...  Option = " + optionsText[i] + '  Value = ' + options[i]);
+        } else {
+            const select = db.prepare('SELECT * FROM Options WHERE Option = ?').get(optionsText[i]);
+            console.log(select.Value);
+            console.log(options[i]);
+            if (select.Value != options[i]) {
+                const update = db.prepare('UPDATE Options SET Value = ? WHERE Option = ?')
+                const updated = update.run(options[i], optionsText[i]);
+            }
+        }
+    }
+}
+
 function settingPageLoad() {
     //StartUp
     document.querySelector("#startUpFirst").placeholder =
@@ -38,7 +80,7 @@ function settingPageLoad() {
 }
 
 function saveButton() {
-    $('.toast').toast('show');
+    $(".toast").toast("show");
 }
 
 async function keyBind(input) {
