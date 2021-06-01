@@ -1,0 +1,59 @@
+#readerHoverButtons {
+    position: absolute;
+    right: 5px;
+    width: auto;
+    height: auto;
+    z-index: 10;
+}
+
+.top225 {
+    top: 225px !important;
+}
+
+#readerHoverButtons button {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#readerHoverButtons .fa-sliders-h:before {
+    color: #6c757d;
+}
+
+#readerHoverButtons .fa-expand:before {
+    color: #6c757d;
+}
+
+.mangaName {
+    width: auto;
+}
+
+#mangaName {
+    border: 1px;
+    border-color: transparent;
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 2px white;
+    width: auto;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px;
+    color: black;
+    font-size: 1.3rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.chapterPageSelector {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 40px;
+    width: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}

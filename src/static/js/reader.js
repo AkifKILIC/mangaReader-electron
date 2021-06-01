@@ -8,6 +8,25 @@ var startUp =
 var newImages = "";
 var elText = "";
 var chapterComboBox = document.getElementById("chapterComboBox");
+var readerHoverButtonsInnerHTML = '';
+
+win.on('resize', function() {
+    if (document.body.clientWidth > 1200) {
+        if (document.getElementById('readerHoverButtons')) {
+            if (document.getElementById('readerHoverButtons').classList.contains('top225')) {
+                document.getElementById('readerHoverButtons').classList.remove('top225');
+            }
+            document.getElementById('readerHoverButtons').classList.add('mt-3');
+        }
+    } else {
+        if (document.getElementById('readerHoverButtons')) {
+            document.getElementById('readerHoverButtons').classList.add('top225');
+            if (document.getElementById('readerHoverButtons').classList.contains('mt-3')) {
+                document.getElementById('readerHoverButtons').classList.remove('mt-3');
+            }
+        }
+    }
+});
 
 function chapterLeft() {
     console.log("left");

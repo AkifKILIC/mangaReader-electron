@@ -39,11 +39,11 @@ function databaseUpdate() {
             console.log("Variable couldn't found in database so adding...  Option = " + optionsText[i] + '  Value = ' + options[i]);
         } else {
             const select = db.prepare('SELECT * FROM Options WHERE Option = ?').get(optionsText[i]);
-            console.log(select.Value);
-            console.log(options[i]);
             if (select.Value != options[i]) {
                 const update = db.prepare('UPDATE Options SET Value = ? WHERE Option = ?')
                 const updated = update.run(options[i], optionsText[i]);
+                console.log(select.Value);
+                console.log(options[i]);
             }
         }
     }

@@ -66,43 +66,6 @@ body {
     }
 }
 
-.mangaName {
-    width: auto;
-    position: relative;
-}
-
-.mangaName p {
-    border: 1px;
-    border-color: transparent;
-    border-style: solid;
-    border-radius: 10px;
-    background-color: #222226;
-    text-align: center;
-    text-shadow: 1px 1px 2px white;
-    width: auto;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 450px;
-    padding: 4px;
-    margin: auto;
-}
-
-.chapterPageSelector {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 35px;
-    width: auto;
-    max-width: 115px;
-    top: 0px;
-    bottom: 0px;
-    position: absolute;
-    margin-left: 30px;
-}
-
 .pagination {
     justify-content: center;
     user-select: none;
