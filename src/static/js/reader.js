@@ -45,7 +45,7 @@ async function loadChapter(url) {
                 el3.item(i).getAttribute("src") +
                 '" id="img' +
                 i +
-                '" style="width: auto;">';
+                '" style="width: auto;min-width: 60%;max-width:100%;">';
         }
         document.getElementById("con").innerHTML = newImages;
     } else {
@@ -59,6 +59,10 @@ chapterComboBox.addEventListener("change", function() {
             "data-c"
         )
     );
+    chapterComboBoxChange();
+});
+
+function chapterComboBoxChange() {
     var originURL = new URL(_url);
     var parentURL = originURL.origin + "/" + originURL.pathname.split("/")[1];
     loadChapter(
@@ -68,37 +72,28 @@ chapterComboBox.addEventListener("change", function() {
             "data-c"
         )
     );
-});
-
-document.addEventListener("keydown", (event) => { //TODO Fix !! its only taking whole numbers not example (10.5)
+}
+document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only taking whole numbers not example (10.5)``
     if (event.isComposing || event.key === "ArrowRight") {
-        var originURL = new URL(_url);
-        var nextChapter =
-            parseInt(originURL.pathname.split("/")[2].split("-")[1]) + 1;
-        loadChapter(
-            originURL.origin +
-            "/" +
-            originURL.pathname.split("/")[1] +
-            "/" +
-            "chapter-" +
-            nextChapter
-        );
+        console.log('RightArrow');
+        if (document.getElementById('con')) {
+            if (chapterComboBox.selectedIndex == 0) {
+                return;
+            } else {
+                chapterComboBox.selectedIndex = chapterComboBox.selectedIndex - 1;
+                chapterComboBoxChange();
+            }
+        }
     }
     if (event.isComposing || event.key === "ArrowLeft") {
-        var originURL = new URL(_url);
-        var prevChapter =
-            parseInt(originURL.pathname.split("/")[2].split("-")[1]) - 1;
-        if (prevChapter <= 0) {
-            return;
+        console.log('LeftArrow');
+        if (document.getElementById('con')) {
+            if (chapterComboBox.selectedIndex == (chapterComboBox.childElementCount - 1)) {
+                return;
+            } else {
+                chapterComboBox.selectedIndex = chapterComboBox.selectedIndex + 1;
+                chapterComboBoxChange();
+            }
         }
-        loadChapter(
-            originURL.origin +
-            "/" +
-            originURL.pathname.split("/")[1] +
-            "/" +
-            "chapter-" +
-            prevChapter
-        );
-        document.getElementById("scrollbarRow").focus();
     }
 });

@@ -54,11 +54,14 @@ function pageStructure(tab, page) {
 }
 async function chapterToReader(url) {
     await modalEnable('', 'close');
+    if (document.getElementById('contentFooter')) {
+        document.getElementById('contentFooter').outerHTML = '';
+        document.getElementById('scrollbarRow').style.height = '100%';
+    }
     document.getElementById("content").innerHTML =
         readTextFile("readerdemo.html");
     console.log("Page = ReaderDemo");
     var lol = await tabActiveToggle(page4);
-    document.getElementById("pagination").style.cssText = "opacity : 0%;";
     await $.cachedScript("static/js/reader.js").done(function(
         script,
         textStatus

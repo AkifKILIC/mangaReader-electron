@@ -22,13 +22,36 @@ async function modalEnable(url, input) {
             });
             let responseText = await getTextFromStream(response.body);
             el3.innerHTML = responseText;
-            el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementsByClassName('story-info-right')[0].getElementsByTagName('h1')[0].innerHTML;
-            var mangaDesc = el3.getElementsByClassName('panel-story-info-description')[0].textContent;
-            el2.getElementsByClassName('mangaDesc')[0].innerHTML = mangaDesc.split('Description :', 2)[1];
-            el2.getElementsByClassName('mangaImage')[0].src = el3.getElementsByClassName('info-image')[0].firstElementChild.getAttribute('src');
-            el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[3].lastElementChild.textContent;
-            el2.getElementsByClassName('mangaAuthor')[0].innerHTML += el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[1].lastElementChild.textContent;
-            sec.innerHTML = el3.getElementsByClassName("row-content-chapter")[0].innerHTML;
+            // ! Checking for li element in page under mangakakalot.com url
+            if (el3.getElementsByClassName('manga-info-text')[0] != null) {
+                el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementsByClassName('manga-info-text')[0].getElementsByTagName('h1')[0].innerHTML;
+                var mangaDesc = el3.getElementsByClassName('leftCol')[0].childNodes[2].textContent;
+                el2.getElementsByClassName('mangaDesc')[0].innerHTML = mangaDesc.split('Description :', 2)[1];
+                el2.getElementsByClassName('mangaImage')[0].src = el3.getElementsByClassName('manga-info-pic')[0].firstElementChild.getAttribute('src');
+                // ! Sometimes tr element has 3 child element or less so we need to check if there is less...
+                if (el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr').length > 3) {
+                    el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[3].lastElementChild.textContent;
+                } else {
+                    el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[2].lastElementChild.textContent;
+                }
+                el2.getElementsByClassName('mangaAuthor')[0].innerHTML += el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[1].lastElementChild.textContent;
+                sec.innerHTML = el3.getElementsByClassName("row-content-chapter")[0].innerHTML;
+
+            } else {
+
+                el2.getElementsByClassName('mangaTitle')[0].innerHTML = el3.getElementsByClassName('story-info-right')[0].getElementsByTagName('h1')[0].innerHTML;
+                var mangaDesc = el3.getElementsByClassName('panel-story-info-description')[0].textContent;
+                el2.getElementsByClassName('mangaDesc')[0].innerHTML = mangaDesc.split('Description :', 2)[1];
+                el2.getElementsByClassName('mangaImage')[0].src = el3.getElementsByClassName('info-image')[0].firstElementChild.getAttribute('src');
+                // ! Sometimes tr element has 3 child element or less so we need to check if there is less...
+                if (el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr').length > 3) {
+                    el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[3].lastElementChild.textContent;
+                } else {
+                    el2.getElementsByClassName('mangaGenre')[0].innerHTML = el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[2].lastElementChild.textContent;
+                }
+                el2.getElementsByClassName('mangaAuthor')[0].innerHTML += el3.getElementsByClassName('variations-tableInfo')[0].firstElementChild.getElementsByTagName('tr')[1].lastElementChild.textContent;
+                sec.innerHTML = el3.getElementsByClassName("row-content-chapter")[0].innerHTML;
+            }
             var chapters = sec.getElementsByClassName("a-h");
             var element2 = "";
             for (var i = 0; i < chapters.length; i++) {

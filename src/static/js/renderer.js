@@ -69,7 +69,8 @@ const page2 = document.getElementById('p2');
 const page3 = document.getElementById('p3');
 const page4 = document.getElementById('p4');
 var bottomRight = document.getElementById('bottomRight');
-var pageinationSEC = '<div class="row w-100" style="height: 1px;justify-content: center;"><ul class="pagination " id="pagination" style="opacity: 0%;height: 1px;">  <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange(' + "'first'" + ')"><span aria-hidden="true">&laquo;</span></a></li><li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange(' + "'minusx'" + ')">1</a></li><li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange(' + "'x'" + ')">2</a></li><li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange(' + "'plusx'" + ')">3</a></li><li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange(' + "'last'" + ')"><span aria-hidden="true">&raquo;</span></a></li><input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;"></ul></div>'
+var pageinationSEC = '<div class="row w-100" id="contentFooter" style="height: 45px;justify-content: center;"><ul class="pagination " id="pagination" style="opacity: 0%;height: 1px;">  <li class="page-item"><a class="page-link" id="buttonFirst" onclick="pageChange(' + "'first'" + ')"><span aria-hidden="true">&laquo;</span></a></li><li class="page-item"><a class="page-link" id="pageFirst" onclick="pageChange(' + "'minusx'" + ')">1</a></li><li class="page-item"><a class="page-link" id="pageCur" onclick="pageChange(' + "'x'" + ')">2</a></li><li class="page-item"><a class="page-link" id="pageLast" onclick="pageChange(' + "'plusx'" + ')">3</a></li><li class="page-item"><a class="page-link" id="buttonLast" onclick="pageChange(' + "'last'" + ')"><span aria-hidden="true">&raquo;</span></a></li><input type="text" class="form-control" id="pageSearch" placeholder="Page" style="width: 55px;font-size: small;"></ul></div>'
+var contentFooter = document.getElementById('contentFooter');
 async function page(tab) { //*** For Tabs to Work for Content Change ***
     if (tab == 'mangakakalot') {
         if (!bottomRight.innerHTML.match('pagination')) {
@@ -100,10 +101,6 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
-        //var img = document.getElementById('img');
-        //img.onload = function () { 
-        //    img.offsetWidth = (img.offsetWidth - (img.naturalHeight - img.offsetHeight));
-        //};
         document.getElementById('pagination').style.cssText = 'opacity : 0%;';
     }
     if (tab == 'settings') {
