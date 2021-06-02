@@ -9,6 +9,7 @@ var newImages = "";
 var elText = "";
 var chapterComboBox = document.getElementById("chapterComboBox");
 var readerHoverButtonsInnerHTML = '';
+var fullScreenReader = false;
 
 win.on('resize', function() {
     if (document.body.clientWidth > 1200) {
@@ -66,7 +67,13 @@ async function loadChapter(url) {
                 i +
                 '" style="width: auto;min-width: 60%;max-width:100%;">';
         }
-        document.getElementById("con").innerHTML = newImages;
+        if (!fullScreenReader) {
+            console.log('fullScreenReader = ' + fullScreenReader)
+            document.getElementById("con").innerHTML = newImages;
+        } else {
+            console.log('fullScreenReader = ' + fullScreenReader)
+            document.getElementById("fscreenCon").innerHTML = newImages;
+        }
     } else {
         console.error("el2 has no element!!!");
     }
@@ -115,4 +122,37 @@ document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only tak
             }
         }
     }
+    if (event.isComposing || event.key === "ArrowDown") {
+        if (fullScreenReader) {
+            autoMaticScroll();
+        }
+    }
+    //if () //TODO: Breaking the loop or stopping and contining...
+});
+
+async function autoMaticScroll() {
+    autoMaticScroll: for (var i = 0; i < document.getElementsByClassName('modal-body')[0].scrollHeight; i++) {
+        document.getElementsByClassName('modal-body')[0].scrollTop += 1;
+        await sleep(1);
+        if (document.getElementsByClassName('modal-body')[0].scrollTop == document.getElementsByClassName('modal-body')[0].scrollHeight) { break autoMaticScroll; }
+        console.log(document.getElementsByClassName('modal-body')[0].scrollTop);
+    }
+}
+
+function fullscreenModalCon(input) {
+    fullScreenReader = input;
+    if (input) {
+        document.getElementById('fscreenCon').innerHTML = document.getElementById('con').innerHTML;
+        document.getElementById('con').innerHTML = '';
+    } else {
+        document.getElementById('con').innerHTML = document.getElementById('fscreenCon').innerHTML;
+        document.getElementById('fscreenCon').innerHTML = '';
+    }
+}
+var myModalEl = document.getElementById('fullScreenPopUp')
+myModalEl.addEventListener('show.bs.modal', function(event) {
+    fullscreenModalCon(true);
+});
+myModalEl.addEventListener('hide.bs.modal', function(event) {
+    fullscreenModalCon(false);
 });

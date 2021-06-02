@@ -17,12 +17,20 @@
     padding-bottom: 5px;
 }
 
+#readerHoverButtons .fa-expand:before {
+    color: #6c757d;
+}
+
+#fullscreenButton:hover .fa-expand:before {
+    color: black;
+}
+
 #readerHoverButtons .fa-sliders-h:before {
     color: #6c757d;
 }
 
-#readerHoverButtons .fa-expand:before {
-    color: #6c757d;
+#readerSettings:hover .fa-sliders-h:before {
+    color: black;
 }
 
 .mangaName {
@@ -56,4 +64,28 @@
     width: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#fcreaderHoverButtons {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: auto;
+    height: auto;
+    z-index: 10;
+}
+
+#fcreaderHoverButtons button {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#fcreaderHoverButtons .fa-expand:before {
+    color: #6c757d;
+}
+
+#fcfullscreenButton:hover .fa-expand:before {
+    color: black;
 }

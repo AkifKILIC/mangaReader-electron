@@ -44,7 +44,7 @@ body {
     font-size: 1rem;
 }
 
-#scrollbarRow::-webkit-scrollbar {
+.scrollbarRow::-webkit-scrollbar {
     display: none;
 }
 

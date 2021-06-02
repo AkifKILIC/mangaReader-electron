@@ -56,7 +56,7 @@ async function chapterToReader(url) {
     await modalEnable('', 'close');
     if (document.getElementById('contentFooter')) {
         document.getElementById('contentFooter').outerHTML = '';
-        document.getElementById('scrollbarRow').style.height = '100%';
+        document.getElementsByClassName('scrollbarRow')[0].style.height = '100%';
     }
     document.getElementById("content").innerHTML =
         readTextFile("readerdemo.html");
