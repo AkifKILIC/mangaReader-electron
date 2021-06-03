@@ -3,7 +3,7 @@
     right: 5px;
     width: auto;
     height: auto;
-    z-index: 10;
+    z-index: 2;
 }
 
 .top225 {
@@ -88,4 +88,26 @@
 
 #fcfullscreenButton:hover .fa-expand:before {
     color: black;
+}
+
+#firstChapter {
+    color: white;
+    width: 150px;
+    background-color: rgba(0, 0, 0, .85);
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow:
+}
+
+#lastChapter {
+    color: white;
+    width: 150px;
+    background-color: rgba(0, 0, 0, .85);
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow:
+}
+
+#autoScrollBar:focus {
+    outline: none;
 }

@@ -10,6 +10,9 @@ var elText = "";
 var chapterComboBox = document.getElementById("chapterComboBox");
 var readerHoverButtonsInnerHTML = '';
 var fullScreenReader = false;
+var firstChapter = document.getElementById('firstChapter');
+var lastChapter = document.getElementById('lastChapter');
+var myModalEl = document.getElementById('fullScreenPopUp');
 
 win.on('resize', function() {
     if (document.body.clientWidth > 1200) {
@@ -104,6 +107,8 @@ document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only tak
         console.log('RightArrow');
         if (document.getElementById('con')) {
             if (chapterComboBox.selectedIndex == 0) {
+                lastChapter.style.zIndex = 99999;
+                $("#lastChapter").toast("show");
                 return;
             } else {
                 chapterComboBox.selectedIndex = chapterComboBox.selectedIndex - 1;
@@ -115,6 +120,8 @@ document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only tak
         console.log('LeftArrow');
         if (document.getElementById('con')) {
             if (chapterComboBox.selectedIndex == (chapterComboBox.childElementCount - 1)) {
+                firstChapter.tabIndex = 99999;
+                $("#firstChapter").toast("show");
                 return;
             } else {
                 chapterComboBox.selectedIndex = chapterComboBox.selectedIndex + 1;
@@ -149,10 +156,15 @@ function fullscreenModalCon(input) {
         document.getElementById('fscreenCon').innerHTML = '';
     }
 }
-var myModalEl = document.getElementById('fullScreenPopUp')
 myModalEl.addEventListener('show.bs.modal', function(event) {
     fullscreenModalCon(true);
 });
 myModalEl.addEventListener('hide.bs.modal', function(event) {
     fullscreenModalCon(false);
 });
+lastChapter.addEventListener('hidden.bs.toast', function() {
+    //lastChapter.tabIndex = -10000;
+})
+firstChapter.addEventListener('hidden.bs.toast', function() {
+    //firstChapter.tabIndex = -10000;
+})
