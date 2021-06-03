@@ -14,29 +14,18 @@
 </div>
 <div class="row nopad nomar justify-content-center" style="background-color: black;min-height : calc(100% - 65px)">
     <div class="row nopad nomar" id="con" style="position: relative;height: auto;width: auto;min-height: 100%;flex-flow: column-reverse;">
-        <div class="col nopad page-left" id="left" onclick="chapterLeft()">
 
-        </div>
-        <div class="col nopad page-right" id="right" onclick="chapterRight()">
-
-        </div>
     </div>
 </div>
-<div class="modal fade nopad" id="fullScreenPopUp" tabindex="-1" focusable="false">
+<div class="modal fade nopad" id="fullScreenPopUp">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div id="fcreaderHoverButtons">
                 <button id="fcfullscreenButton" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fas fa-compress fa-2x"></i></button>
             </div>
             <div class="modal-body nopad scrollbarRow">
-                <div class="row nopad nomar justify-content-center" id="autoScrollBar" style="background-color: black;">
+                <div class="row nopad nomar justify-content-center" id="autoScrollBar" style="background-color: black;overflow-y: scroll;" tabindex="-1">
                     <div class="row nopad nomar" id="fscreenCon" style="position: relative;height: auto;width: auto;min-height: 100%;flex-flow: column-reverse;">
-                        <div class="col nopad page-left" id="left" onclick="chapterLeft()">
-
-                        </div>
-                        <div class="col nopad page-right" id="right" onclick="chapterRight()">
-
-                        </div>
                     </div>
                 </div>
             </div>

@@ -122,11 +122,11 @@ document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only tak
             }
         }
     }
-    if (event.isComposing || event.key === "ArrowDown") {
-        if (fullScreenReader) {
-            autoMaticScroll();
-        }
-    }
+    //if (event.isComposing || event.key === "ArrowDown") {
+    //    if (fullScreenReader) {
+    //        autoMaticScroll();
+    //    }
+    //}
     //if () //TODO: Breaking the loop or stopping and contining...
 });
 
