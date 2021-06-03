@@ -96,7 +96,6 @@
     background-color: rgba(0, 0, 0, .85);
     text-align: center;
     border-radius: 1rem;
-    box-shadow:
 }
 
 #lastChapter {
@@ -105,7 +104,6 @@
     background-color: rgba(0, 0, 0, .85);
     text-align: center;
     border-radius: 1rem;
-    box-shadow:
 }
 
 #autoScrollBar:focus {
