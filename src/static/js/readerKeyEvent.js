@@ -1,6 +1,5 @@
-if (readerOnline) {
-    document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only taking whole numbers not example (10.5)``
-
+document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only taking whole numbers not example (10.5)``
+    if (readerOnline) {
         if (event.isComposing || event.key === "ArrowRight") {
             console.log('RightArrow');
             if (document.getElementById('con')) {
@@ -27,13 +26,12 @@ if (readerOnline) {
                 }
             }
         }
-
-        //if (event.isComposing || event.key === "ArrowDown") {
-        //    if (fullScreenReader) {
-        //        autoMaticScroll();
-        //    }
-        //}
-        //if () //TODO: Breaking the loop or stopping and contining...
-    });
-}
+    }
+    //if (event.isComposing || event.key === "ArrowDown") {
+    //    if (fullScreenReader) {
+    //        autoMaticScroll();
+    //    }
+    //}
+    //if () //TODO: Breaking the loop or stopping and contining...
+});
 console.log('loading script readerKeyEvent.js SUCCESS  boolean = ' + readerOnline);

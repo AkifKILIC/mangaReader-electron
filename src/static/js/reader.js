@@ -123,9 +123,12 @@ function fullscreenModalCon(input) {
     if (input) {
         document.getElementById('fscreenCon').innerHTML = document.getElementById('con').innerHTML;
         document.getElementById('con').innerHTML = '';
+        win.fullScreen = true;
     } else {
         document.getElementById('con').innerHTML = document.getElementById('fscreenCon').innerHTML;
         document.getElementById('fscreenCon').innerHTML = '';
+        win.fullScreen = false;
+
     }
 }
 myModalEl.addEventListener('show.bs.modal', function(event) {
