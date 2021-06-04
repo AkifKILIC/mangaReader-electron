@@ -10,10 +10,10 @@ document.onreadystatechange = (event) => {
         handleWindowControls();
     }
 };
-
 var myModal;
 var url;
-
+var readerKeyEventJS = false;
+var readerOnline = false;
 async function toggleModal(url, input) {
     await $.cachedScript('static/js/mangapage.js').done(function(script, textStatus) {
         console.log("Status  :  " + textStatus);
@@ -84,28 +84,31 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         pageStructure('mangakakalot', currentPage);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
+        readerOnline = false;
     }
     if (tab == 'mangaoku') {
         document.getElementById("content").innerHTML = readTextFile("mangaoku.html");
         console.log('Page = MangaOku');
         tabActiveToggle(page2);
-        document.getElementById('pagination').style.cssText = 'opacity : 100%;';
+        readerOnline = false;
+
     }
     if (tab == 'manytoon') {
         document.getElementById("content").innerHTML = readTextFile("manytoon.html");
         console.log('Page = ManyToon');
         tabActiveToggle(page3);
-        document.getElementById('pagination').style.cssText = 'opacity : 100%;';
+        readerOnline = false;
     }
     if (tab == 'readerdemo') {
         document.getElementById("content").innerHTML = readTextFile("readerdemo.html");
         console.log('Page = ReaderDemo');
         tabActiveToggle(page4);
-        document.getElementById('pagination').style.cssText = 'opacity : 0%;';
+        readerOnline = true;
     }
     if (tab == 'settings') {
         document.getElementById("content").innerHTML = readTextFile("settings.html");
         settingPageLoad();
+        readerOnline = false;
     }
 }
 var pagination = document.getElementsByClassName('page-item');
@@ -193,6 +196,7 @@ function readTextFile(file) {
     rawFile.send(null);
     return allText;
 }
+
 jQuery.cachedScript = function(url, options) {
     // Allow user to set any option except for dataType, cache, and url
     options = $.extend(options || {}, {

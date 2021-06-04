@@ -14,6 +14,12 @@ var firstChapter = document.getElementById('firstChapter');
 var lastChapter = document.getElementById('lastChapter');
 var myModalEl = document.getElementById('fullScreenPopUp');
 
+if (!readerKeyEventJS) {
+    $.cachedScript('static/js/readerKeyEvent.js').done(function(script, textStatus) {
+        console.log("Status  :  " + textStatus);
+        readerKeyEventJS = true;
+    });
+}
 win.on('resize', function() {
     if (document.body.clientWidth > 1200) {
         if (document.getElementById('readerHoverButtons')) {
@@ -68,7 +74,7 @@ async function loadChapter(url) {
                 el3.item(i).getAttribute("src") +
                 '" id="img' +
                 i +
-                '" style="width: auto;min-width: 60%;max-width:100%;">';
+                '" style="width: 850px;">';
         }
         if (!fullScreenReader) {
             console.log('fullScreenReader = ' + fullScreenReader)
@@ -102,40 +108,6 @@ function chapterComboBoxChange() {
         )
     );
 }
-document.addEventListener("keydown", (event) => { // Done  ``Fix !! its only taking whole numbers not example (10.5)``
-    if (event.isComposing || event.key === "ArrowRight") {
-        console.log('RightArrow');
-        if (document.getElementById('con')) {
-            if (chapterComboBox.selectedIndex == 0) {
-                lastChapter.style.zIndex = 99999;
-                $("#lastChapter").toast("show");
-                return;
-            } else {
-                chapterComboBox.selectedIndex = chapterComboBox.selectedIndex - 1;
-                chapterComboBoxChange();
-            }
-        }
-    }
-    if (event.isComposing || event.key === "ArrowLeft") {
-        console.log('LeftArrow');
-        if (document.getElementById('con')) {
-            if (chapterComboBox.selectedIndex == (chapterComboBox.childElementCount - 1)) {
-                firstChapter.tabIndex = 99999;
-                $("#firstChapter").toast("show");
-                return;
-            } else {
-                chapterComboBox.selectedIndex = chapterComboBox.selectedIndex + 1;
-                chapterComboBoxChange();
-            }
-        }
-    }
-    //if (event.isComposing || event.key === "ArrowDown") {
-    //    if (fullScreenReader) {
-    //        autoMaticScroll();
-    //    }
-    //}
-    //if () //TODO: Breaking the loop or stopping and contining...
-});
 
 async function autoMaticScroll() {
     autoMaticScroll: for (var i = 0; i < document.getElementsByClassName('modal-body')[0].scrollHeight; i++) {

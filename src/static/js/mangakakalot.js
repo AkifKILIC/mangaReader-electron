@@ -62,10 +62,8 @@ async function chapterToReader(url) {
         readTextFile("readerdemo.html");
     console.log("Page = ReaderDemo");
     var lol = await tabActiveToggle(page4);
-    await $.cachedScript("static/js/reader.js").done(function(
-        script,
-        textStatus
-    ) {
+    readerOnline = true;
+    await $.cachedScript("static/js/reader.js").done(function(script, textStatus) {
         console.log("Status for Reader.js = " + textStatus);
     });
     loadChapter(url);
