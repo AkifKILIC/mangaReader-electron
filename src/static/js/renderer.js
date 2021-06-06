@@ -1,5 +1,18 @@
 const remote = require('electron').remote;
-const db = require('better-sqlite3')('src/static/db/db.db');
+const fs = require('fs');
+var dbCheck = 'resources/app/src/static/db/db.db';
+
+
+async function start() {
+    await fs.access('src/static/db/db.db', (err) => {
+        if (err) {
+            dbCheck = 'resources/app/src/static/db/db.db';
+            console.log('did not found');
+        }
+    });
+    const db = require('better-sqlite3')(dbCheck);
+    console.log(dbCheck);
+}
 window.$ = window.jQuery = require('jquery');
 const win = remote.getCurrentWindow();
 /* Note this is different to the

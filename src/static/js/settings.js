@@ -25,7 +25,7 @@ var optionsText = [
     "readerScrolDownSpeed",
     "readerAutomaticScrollKeybind",
 ];
-databaseUpdate();
+//databaseUpdate();
 
 function databaseUpdate() {
     for (var i = 0; i < options.length; i++) {
