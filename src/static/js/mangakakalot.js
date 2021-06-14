@@ -1,16 +1,58 @@
 var currentPage = 1;
 var fullPage = "";
 var pageContent = document.getElementById("content");
+var mangakakalotURL = '';
 
-function pageStructure(tab, page) {
+async function pageStructure(tab, subURL, search) {
     // TODO: Make it look Nice
-    currentPage = page;
-    var lastManga = 24 * page;
-    var firstManga = lastManga - 24 + 1;
+    if (search) {
+        if (document.getElementById('contentFooter')) {
+            document.getElementById('contentFooter').outerHTML = '';
+            document.getElementsByClassName('scrollbarRow')[0].style.height = '100%';
+        }
+    } else {
+        currentPage = subURL;
+    }
     pageContent.innerHTML = "";
     fullPage = "";
+    var dummy = document.createElement("html");
     if (tab == "mangakakalot") {
-        for (i = firstManga; i <= lastManga; i++) {
+        if (search) {
+            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL;
+        } else {
+            mangakakalotURL = 'https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page='
+        }
+        let response = await fetch(mangakakalotURL + currentPage, {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125",
+                Referer: "https://manganelo.com/",
+            },
+        });
+        let responseText = await getTextFromStream(response.body);
+        dummy.innerHTML = responseText;
+        if (dummy.getElementsByClassName('group_page')[0]) {
+            lastPage = dummy.getElementsByClassName('group_page')[0].lastChild.innerText.replace('Last(', '').replace(')', '');
+            lastPageInt = parseInt(lastPage);
+        } else {
+
+        }
+        var dummyElement = dummy.getElementsByClassName('list-truyen-item-wrap');
+        for (i = 0; i < dummy.getElementsByClassName('list-truyen-item-wrap').length; i++) {
+            var cardHTML = readTextFile("mangakakalot.html");
+            var cardHTML1 = cardHTML.replace("taytil", dummyElement[i].firstElementChild.getAttribute('title'));
+            var cardHTML2 = cardHTML1.replace("image", dummyElement[i].getElementsByTagName('img')[0].getAttribute('src'));
+            var cardHTML3 = cardHTML2.replace(/content/g, dummyElement[i].lastElementChild.innerText);
+            var hrefF = "toggleModal('" + dummyElement[i].firstElementChild.getAttribute('href') + "','toggle')";
+            var cardHTML4 = cardHTML3.replace(/haref/g, hrefF);
+            var cardHTML5 = cardHTML4.replace(/gorunurluk/g, "0%");
+            pageContent.innerHTML += cardHTML5;
+        }
+        if (pageContent.classList.contains("MangaorReader")) {} else {
+            pageContent.classList.add("MangaorReader");
+        }
+        if (search) {} else { pageOrder(); }
+
+        /*for (i = firstManga; i <= lastManga; i++) {
             if (i < parseInt(lastPage.id) + 1) {
                 const row = db
                     .prepare("SELECT * FROM MangakakalotHot WHERE id = ?")
@@ -34,7 +76,7 @@ function pageStructure(tab, page) {
         if (pageContent.classList.contains("MangaorReader")) {} else {
             pageContent.classList.add("MangaorReader");
         }
-        pageOrder();
+        pageOrder();*/
     }
     if (tab == "mangaoku") {
         // TODO : MANGAOKU SCRAPPER
@@ -104,10 +146,11 @@ function pageChange(current) {
 var min = 1;
 var cur = 2;
 var max = 3;
-var lastPage = db
+var lastPage = 100;
+/*db
     .prepare("SELECT * FROM MangakakalotHot ORDER BY ID DESC LIMIT 1")
-    .get();
-var lastPageInt = Math.ceil(parseInt(lastPage.id) / 24);
+    .get();*/
+var lastPageInt = parseInt(lastPage);
 
 function pageOrder() {
     minText = min.toString();

@@ -94,7 +94,7 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         await $.cachedScript('static/js/mangakakalot.js').done(function(script, textStatus) {
             console.log(textStatus);
         });
-        pageStructure('mangakakalot', currentPage);
+        pageStructure('mangakakalot', currentPage, false);
         console.log('Page = Mangakakalot');
         tabActiveToggle(page1);
         readerOnline = false;
