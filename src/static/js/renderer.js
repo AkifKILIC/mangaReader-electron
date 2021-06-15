@@ -239,15 +239,12 @@ var settingsButton = document.getElementsByClassName('settings')[0]
 var settingsButtonFirstChild = document.getElementById('settingsCog')
 settingsButtonFirstChild.addEventListener('mouseover', function() {
     settingsButton.classList.add('settingsHover');
-    console.log('hovered');
 });
 settingsButtonFirstChild.addEventListener('mouseout', function() {
     settingsButton.classList.remove('settingsHover');
-    console.log('out');
 });
 settingsButtonFirstChild.addEventListener('click', function() {
     page('settings');
-    console.log('click');
 });
 
 function sleep(ms) {

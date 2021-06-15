@@ -2,14 +2,15 @@ var currentPage = 1;
 var fullPage = "";
 var pageContent = document.getElementById("content");
 var mangakakalotURL = '';
-
-async function pageStructure(tab, subURL, search) {
+var isSearch;
+var searchString;
+async function pageStructure(tab, subURL, search, page) {
     // TODO: Make it look Nice
+    console.log('script');
+    isSearch = search;
     if (search) {
-        if (document.getElementById('contentFooter')) {
-            document.getElementById('contentFooter').outerHTML = '';
-            document.getElementsByClassName('scrollbarRow')[0].style.height = '100%';
-        }
+        currentPage = page;
+        searchString = subURL;
     } else {
         currentPage = subURL;
     }
@@ -18,11 +19,12 @@ async function pageStructure(tab, subURL, search) {
     var dummy = document.createElement("html");
     if (tab == "mangakakalot") {
         if (search) {
-            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL;
+            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL + '?page=' + currentPage;
         } else {
-            mangakakalotURL = 'https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page='
+            mangakakalotURL = 'https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page=' + currentPage;
         }
-        let response = await fetch(mangakakalotURL + currentPage, {
+        console.log(mangakakalotURL);
+        let response = await fetch(mangakakalotURL, {
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125",
                 Referer: "https://manganelo.com/",
@@ -34,18 +36,37 @@ async function pageStructure(tab, subURL, search) {
             lastPage = dummy.getElementsByClassName('group_page')[0].lastChild.innerText.replace('Last(', '').replace(')', '');
             lastPageInt = parseInt(lastPage);
         } else {
-
+            if (document.getElementById('contentFooter')) {
+                document.getElementById('contentFooter').outerHTML = '';
+                document.getElementsByClassName('scrollbarRow')[0].style.height = '100%';
+            }
         }
         var dummyElement = dummy.getElementsByClassName('list-truyen-item-wrap');
-        for (i = 0; i < dummy.getElementsByClassName('list-truyen-item-wrap').length; i++) {
-            var cardHTML = readTextFile("mangakakalot.html");
-            var cardHTML1 = cardHTML.replace("taytil", dummyElement[i].firstElementChild.getAttribute('title'));
-            var cardHTML2 = cardHTML1.replace("image", dummyElement[i].getElementsByTagName('img')[0].getAttribute('src'));
-            var cardHTML3 = cardHTML2.replace(/content/g, dummyElement[i].lastElementChild.innerText);
-            var hrefF = "toggleModal('" + dummyElement[i].firstElementChild.getAttribute('href') + "','toggle')";
-            var cardHTML4 = cardHTML3.replace(/haref/g, hrefF);
-            var cardHTML5 = cardHTML4.replace(/gorunurluk/g, "0%");
-            pageContent.innerHTML += cardHTML5;
+        var searchElement = dummy.getElementsByClassName('story_item');
+        console.log(dummy);
+        if (searchElement[0]) {
+            for (i = 0; i < dummy.getElementsByClassName('story_item').length; i++) {
+                var cardHTML = readTextFile("mangakakalot.html");
+                var cardHTML1 = cardHTML.replace("taytil", searchElement[i].getElementsByClassName('story_name')[0].textContent);
+                var cardHTML2 = cardHTML1.replace("image", searchElement[i].getElementsByTagName('img')[0].getAttribute('src'));
+                var cardHTML3 = cardHTML2.replace(/content/g, searchElement[i].lastElementChild.innerText);
+                var hrefF = "toggleModal('" + searchElement[i].firstElementChild.getAttribute('href') + "','toggle')";
+                var cardHTML4 = cardHTML3.replace(/haref/g, hrefF);
+                var cardHTML5 = cardHTML4.replace(/gorunurluk/g, "0%");
+                pageContent.innerHTML += cardHTML5;
+            }
+        }
+        if (dummyElement[0]) {
+            for (i = 0; i < dummy.getElementsByClassName('list-truyen-item-wrap').length; i++) {
+                var cardHTML = readTextFile("mangakakalot.html");
+                var cardHTML1 = cardHTML.replace("taytil", dummyElement[i].firstElementChild.getAttribute('title'));
+                var cardHTML2 = cardHTML1.replace("image", dummyElement[i].getElementsByTagName('img')[0].getAttribute('src'));
+                var cardHTML3 = cardHTML2.replace(/content/g, dummyElement[i].lastElementChild.innerText);
+                var hrefF = "toggleModal('" + dummyElement[i].firstElementChild.getAttribute('href') + "','toggle')";
+                var cardHTML4 = cardHTML3.replace(/haref/g, hrefF);
+                var cardHTML5 = cardHTML4.replace(/gorunurluk/g, "0%");
+                pageContent.innerHTML += cardHTML5;
+            }
         }
         if (pageContent.classList.contains("MangaorReader")) {} else {
             pageContent.classList.add("MangaorReader");
@@ -114,30 +135,51 @@ async function chapterToReader(url) {
 function pageChange(current) {
     if (current == "first") {
         if (min != currentPage) {
-            pageStructure("mangakakalot", 1);
+            if (isSearch) {
+                pageStructure("mangakakalot", searchString, true, 1);
+            } else {
+                pageStructure("mangakakalot", 1);
+            }
             cur = 1;
         }
     }
     if (current == "minusx") {
         if (min != currentPage) {
-            pageStructure("mangakakalot", min);
+            if (isSearch) {
+                pageStructure("mangakakalot", searchString, true, min);
+            } else {
+                pageStructure("mangakakalot", min);
+            }
             cur--;
         }
     }
     if (current == "x") {
         if (cur != currentPage) {
-            pageStructure("mangakakalot", cur);
+            if (isSearch) {
+                pageStructure("mangakakalot", searchString, true, cur);
+            } else {
+                pageStructure("mangakakalot", cur);
+            }
         }
     }
     if (current == "plusx") {
         if (max != currentPage) {
-            pageStructure("mangakakalot", max);
+            if (isSearch) {
+                pageStructure("mangakakalot", searchString, true, max);
+            } else {
+                pageStructure("mangakakalot", max);
+            }
             cur++;
         }
     }
     if (current == "last") {
         if (max != currentPage) {
-            pageStructure("mangakakalot", lastPageInt);
+            if (isSearch) {
+                pageStructure("mangakakalot", searchString, true, lastPageInt);
+            } else {
+                e
+                pageStructure("mangakakalot", lastPageInt);
+            }
             cur = lastPageInt;
         }
     }
@@ -183,6 +225,17 @@ function pageOrder() {
         }
     }
 }
+var mangaSearch = document.getElementById("mangaSearch");
+mangaSearch.addEventListener("keyup", function(e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        pageStructure(
+            "mangakakalot",
+            document.querySelector("#mangaSearch").value,
+            true
+        );
+    }
+})
 
 var pageInput = document.getElementById("pageSearch");
 pageInput.addEventListener("keyup", function(event) {
