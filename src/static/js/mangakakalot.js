@@ -19,7 +19,7 @@ async function pageStructure(tab, subURL, search, page) {
     var dummy = document.createElement("html");
     if (tab == "mangakakalot") {
         if (search) {
-            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL + '?page=' + currentPage;
+            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL.replace(/\s/g, '_') + '?page=' + currentPage;
         } else {
             mangakakalotURL = 'https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page=' + currentPage;
         }
