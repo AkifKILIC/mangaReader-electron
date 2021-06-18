@@ -72,8 +72,24 @@ async function pageStructure(tab, subURL, search, page) {
             pageContent.classList.add("MangaorReader");
         }
         if (search) {} else { pageOrder(); }
-
-        /*for (i = firstManga; i <= lastManga; i++) {
+    }
+    if (tab == "mangaoku") {
+        // TODO : MANGAOKU SCRAPPER
+    }
+    if (tab == "manytoon") {
+        // TODO : MANYTOON SCRAPPER
+    }
+    if (tab == "readerdemo") {
+        if (pageContent.classList.contains("MangaorReader")) {
+            pageContent.classList.remove("MangaorReader");
+        }
+        document.getElementById("content").innerHTML =
+            readTextFile("readerdemo.html");
+        console.log("Page = ReaderDemo");
+        tabActiveToggle(page4);
+    }
+    if (tab == "favorites") {
+        for (i = firstManga; i <= lastManga; i++) {
             if (i < parseInt(lastPage.id) + 1) {
                 const row = db
                     .prepare("SELECT * FROM MangakakalotHot WHERE id = ?")
@@ -97,22 +113,7 @@ async function pageStructure(tab, subURL, search, page) {
         if (pageContent.classList.contains("MangaorReader")) {} else {
             pageContent.classList.add("MangaorReader");
         }
-        pageOrder();*/
-    }
-    if (tab == "mangaoku") {
-        // TODO : MANGAOKU SCRAPPER
-    }
-    if (tab == "manytoon") {
-        // TODO : MANYTOON SCRAPPER
-    }
-    if (tab == "readerdemo") {
-        if (pageContent.classList.contains("MangaorReader")) {
-            pageContent.classList.remove("MangaorReader");
-        }
-        document.getElementById("content").innerHTML =
-            readTextFile("readerdemo.html");
-        console.log("Page = ReaderDemo");
-        tabActiveToggle(page4);
+        pageOrder();
     }
 }
 async function chapterToReader(url) {

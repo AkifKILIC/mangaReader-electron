@@ -91,7 +91,7 @@ async function page(tab) { //*** For Tabs to Work for Content Change ***
         }
         document.getElementById('pagination').style.cssText = 'opacity : 100%;';
         document.getElementsByClassName('scrollbarRow')[0].style.height = 'calc(100% - 45px)';
-        await $.cachedScript('static/js/mangakakalot.js').done(function(script, textStatus) {
+        await $.cachedScript('static/js/mangasStructure.js').done(function(script, textStatus) {
             console.log(textStatus);
         });
         pageStructure('mangakakalot', currentPage, false);
