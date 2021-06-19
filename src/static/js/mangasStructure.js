@@ -6,7 +6,6 @@ var isSearch;
 var searchString;
 async function pageStructure(tab, subURL, search, page) {
     // TODO: Make it look Nice
-    console.log('script');
     isSearch = search;
     if (search) {
         currentPage = page;
@@ -19,7 +18,7 @@ async function pageStructure(tab, subURL, search, page) {
     var dummy = document.createElement("html");
     if (tab == "mangakakalot") {
         if (search) {
-            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL.replace(/\s/g, '_') + '?page=' + currentPage;
+            mangakakalotURL = 'https://mangakakalot.com/search/story/' + subURL.replace(/\s/g, '_') + '?page=' + currentPage; // "/\s/g" is all white spaces in string.
         } else {
             mangakakalotURL = 'https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page=' + currentPage;
         }
@@ -53,7 +52,9 @@ async function pageStructure(tab, subURL, search, page) {
                 var hrefF = "toggleModal('" + searchElement[i].firstElementChild.getAttribute('href') + "','toggle')";
                 var cardHTML4 = cardHTML3.replace(/haref/g, hrefF);
                 var cardHTML5 = cardHTML4.replace(/gorunurluk/g, "0%");
-                pageContent.innerHTML += cardHTML5;
+                var cardHTML6 = cardHTML5.replace(/mangaCard/g, 'mangaCard' + i);
+                var cardHTML7 = cardHTML6.replace('mangaSite', tab);
+                pageContent.innerHTML += cardHTML7;
             }
         }
         if (dummyElement[0]) {
@@ -65,7 +66,9 @@ async function pageStructure(tab, subURL, search, page) {
                 var hrefF = "toggleModal('" + dummyElement[i].firstElementChild.getAttribute('href') + "','toggle')";
                 var cardHTML4 = cardHTML3.replace(/haref/g, hrefF);
                 var cardHTML5 = cardHTML4.replace(/gorunurluk/g, "0%");
-                pageContent.innerHTML += cardHTML5;
+                var cardHTML6 = cardHTML5.replace(/mangaCard/g, 'mangaCard' + i);
+                var cardHTML7 = cardHTML6.replace('mangaSite', tab);
+                pageContent.innerHTML += cardHTML7;
             }
         }
         if (pageContent.classList.contains("MangaorReader")) {} else {
@@ -89,10 +92,13 @@ async function pageStructure(tab, subURL, search, page) {
         tabActiveToggle(page4);
     }
     if (tab == "favorites") {
+        var firstManga;
+        var lastManga;
+
         for (i = firstManga; i <= lastManga; i++) {
             if (i < parseInt(lastPage.id) + 1) {
                 const row = db
-                    .prepare("SELECT * FROM MangakakalotHot WHERE id = ?")
+                    .prepare("SELECT * FROM Favorites WHERE id = ?")
                     .get(i);
                 var inner1 = readTextFile("mangakakalot.html");
                 var inner2 = inner1.replace("taytil", row.name);

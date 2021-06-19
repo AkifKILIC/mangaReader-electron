@@ -4,7 +4,7 @@ body {
     color: white;
 }
 
-#content #card {
+#content .card {
     display: table;
 }
 
@@ -32,7 +32,7 @@ body {
     border-bottom-left-radius: 0.8rem;
 }
 
-#content #card .card-text {
+#content .card .card-text {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 3;
@@ -40,7 +40,7 @@ body {
     display: -webkit-box;
 }
 
-#content #card {
+#content .card {
     font-size: 1rem;
 }
 
@@ -49,19 +49,19 @@ body {
 }
 
 @include media-breakpoint-up(sm) {
-    #content #card {
+    #content .card {
         font-size: 1.2rem;
     }
 }
 
 @include media-breakpoint-up(md) {
-    #content #card {
+    #content .card {
         font-size: 1.4rem;
     }
 }
 
 @include media-breakpoint-up(lg) {
-    #content #card {
+    #content .card {
         font-size: 1.5rem;
     }
 }

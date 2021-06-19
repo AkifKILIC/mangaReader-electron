@@ -1,9 +1,10 @@
 const remote = require('electron').remote;
 const fs = require('fs');
-var dbCheck = 'resources/app/src/static/db/db.db';
+const Database = require('better-sqlite3');
+const db = new Database('src/static/db/db.db', { verbose: console.log });
 
-
-async function start() {
+//var dbCheck = 'resources/app/src/static/db/db.db';
+/*async function start() {
     await fs.access('src/static/db/db.db', (err) => {
         if (err) {
             dbCheck = 'resources/app/src/static/db/db.db';
@@ -12,7 +13,7 @@ async function start() {
     });
     const db = require('better-sqlite3')(dbCheck);
     console.log(dbCheck);
-}
+}*/
 window.$ = window.jQuery = require('jquery');
 const win = remote.getCurrentWindow();
 /* Note this is different to the
@@ -21,6 +22,7 @@ html global `window` variable */
 document.onreadystatechange = (event) => {
     if (document.readyState == "complete") {
         handleWindowControls();
+        databaseStart();
     }
 };
 var myModal;
